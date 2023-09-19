@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "536934803404",
+    "project_id": "app-idosos-704ed",
+    "storage_bucket": "app-idosos-704ed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:536934803404:android:81fd9ba8f07167c57bdf69",
+        "android_client_info": {
+          "package_name": "com.example.app_idosos"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuh5zOWHRyBkFQ7dC7JDnWUKAdgxsfRFg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
