@@ -6,7 +6,11 @@ import 'modules/login/login_module.dart';
 
 class AppModule extends Module {
   @override
-  final List<Bind> binds = [];
+  final List<Bind> binds = [
+    Bind.lazySingleton((i) => LoginModule()),
+    Bind.lazySingleton((i) => HomeModule()),
+    Bind.lazySingleton((i) => RegisterModule()),
+  ];
 
   @override
   final List<ModularRoute> routes = [
