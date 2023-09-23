@@ -49,6 +49,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
+  awesome_notifications:
+    dependency: "direct main"
+    description:
+      name: awesome_notifications
+      sha256: "6ba98d73553c8a54e7b77f8dd8b95ce9d32a7839ef182b28cf2ad54ec28b1821"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.7.5-dev.3"
   boolean_selector:
     dependency: transitive
     description:
@@ -277,10 +285,10 @@ packages:
     dependency: transitive
     description:
       name: file
-      sha256: "5fc22d7c25582e38ad9a8515372cd9a93834027aacf1801cf01164dac0ffa08c"
+      sha256: "1b92bec4fc2a72f59a8e15af5f52cd441e4a7860b49499d69dfa817af20e925d"
       url: "https://pub.dev"
     source: hosted
-    version: "7.0.0"
+    version: "6.1.4"
   file_selector_linux:
     dependency: transitive
     description:
@@ -406,14 +414,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_alarm_clock:
+  flutter_alarm_background_trigger:
     dependency: "direct main"
     description:
-      name: flutter_alarm_clock
-      sha256: "670b047839d2e1e85106798f7ce610723ea2e022073ef82dd16c4def3970f1e4"
+      name: flutter_alarm_background_trigger
+      sha256: f5051dd517401f895c5b5e46c9c9a402958d2af5dac82cc585117af00e356a02
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.1"
+    version: "1.0.2"
   flutter_lints:
     dependency: "direct main"
     description:
@@ -724,26 +732,34 @@ packages:
     dependency: "direct main"
     description:
       name: objectbox
-      sha256: f5687c7bd2ec5e97f07dbe06bcdcff46094f5d6e52a1c01c722e1a410434ac1e
+      sha256: "3c9d13df69e0d0084f5c395b11dc9c8fbe6d9dbca5051f9ac981b5d93c773461"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.0"
+    version: "2.2.1"
   objectbox_flutter_libs:
     dependency: "direct main"
     description:
       name: objectbox_flutter_libs
-      sha256: "89fdfa61833116a5583fb3521e4efb14906eadcd724e25ce2de48d19b466b41a"
+      sha256: b2589ed58a04fd7c44a00baa38431ce0e980d052808f87e35a3ee338e586dba9
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.0"
+    version: "2.2.1"
   objectbox_generator:
     dependency: "direct dev"
     description:
       name: objectbox_generator
-      sha256: "78afc5cde3c4da721deafe61e3daac1bcdce37c0d43134527f32f85f0a3f9748"
+      sha256: adb562ce5fe39439255b05890e748021250d9102726d8603f54d51e4620c7b33
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.0"
+    version: "2.2.1"
+  overlay_support:
+    dependency: "direct main"
+    description:
+      name: overlay_support
+      sha256: fc39389bfd94e6985e1e13b2a88a125fc4027608485d2d4e2847afe1b2bb339c
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
   package_config:
     dependency: transitive
     description:
@@ -949,6 +965,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.0"
+  timezone:
+    dependency: "direct main"
+    description:
+      name: timezone
+      sha256: "1cfd8ddc2d1cfd836bc93e67b9be88c3adaeca6f40a00ca999104c30693cdca0"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.9.2"
   timing:
     dependency: transitive
     description:

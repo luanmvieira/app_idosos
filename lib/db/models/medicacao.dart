@@ -8,6 +8,8 @@ class Medicacao {
   String? nome;
   String? dose;
   List<String>? horarios;
+  bool? sincronizado;
+  List<int>? idsAlarmes;
 
 
 
@@ -15,6 +17,8 @@ class Medicacao {
       {this.nome,
         this.dose,
         this.horarios,
+        this.sincronizado,
+        this.idsAlarmes,
       });
 
 

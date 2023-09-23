@@ -1,5 +1,9 @@
+import 'dart:math';
+
+import 'package:app_idosos/app/modules/home/home_store.dart';
 import 'package:app_idosos/db/models/medicacao.dart';
 import 'package:app_idosos/db/stores/store_definition/medicacao_store.dart';
+import 'package:app_idosos/objectbox.g.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -15,8 +19,8 @@ class AdicionarMedicamentoDialog extends StatefulWidget {
       _AdicionarMedicamentoDialogState();
 }
 
-class _AdicionarMedicamentoDialogState
-    extends State<AdicionarMedicamentoDialog> {
+class _AdicionarMedicamentoDialogState extends State<AdicionarMedicamentoDialog> {
+  final HomeStore store = Modular.get();
   final TextEditingController _nomeController = TextEditingController();
   final TextEditingController _doseController = TextEditingController();
   final _horarioController =  MaskedTextController(mask: '00:00');
@@ -101,11 +105,21 @@ class _AdicionarMedicamentoDialogState
         ElevatedButton(
           child: Text('Adicionar'),
           onPressed: () async {
+            Random random = Random();
             medicacao.nome = _nomeController.text;
             medicacao.dose = _doseController.text;
             medicacao.horarios = _horarios;
+            medicacao.sincronizado = false;
+            for (var alarm in _horarios) {
+              int randonid = random.nextInt(999999);
+              medicacao.idsAlarmes?.add(randonid);
+              await store.createAlarm(randonid, alarm, _nomeController.text, _doseController.text);
+
+            }
             await medicacaoStore.put(medicacao);
             Modular.to.pop();
+            await store.getListaMedicamentos();
+
 
           },
         ),

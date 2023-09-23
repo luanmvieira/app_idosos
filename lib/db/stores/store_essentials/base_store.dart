@@ -8,6 +8,7 @@ abstract class BaseStore<T> {
   /// Insere/atualiza um objeto no banco
   Future<int> put(T object) async => await getStore().then((store) => store.put(object));
 
+
   /// Insere/atualiza um objeto no banco de forma assincrona
   Future<int> putAsync(T object) async => await getStore().then((store) => store.putAsync(object));
 

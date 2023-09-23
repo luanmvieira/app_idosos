@@ -89,12 +89,64 @@ mixin _$HomeStore on _HomeStoreBase, Store {
     });
   }
 
+  late final _$listMedicamentosAtom =
+      Atom(name: '_HomeStoreBase.listMedicamentos', context: context);
+
+  @override
+  List<Medicacao> get listMedicamentos {
+    _$listMedicamentosAtom.reportRead();
+    return super.listMedicamentos;
+  }
+
+  @override
+  set listMedicamentos(List<Medicacao> value) {
+    _$listMedicamentosAtom.reportWrite(value, super.listMedicamentos, () {
+      super.listMedicamentos = value;
+    });
+  }
+
+  late final _$getMedicamentosValidatorAtom =
+      Atom(name: '_HomeStoreBase.getMedicamentosValidator', context: context);
+
+  @override
+  bool get getMedicamentosValidator {
+    _$getMedicamentosValidatorAtom.reportRead();
+    return super.getMedicamentosValidator;
+  }
+
+  @override
+  set getMedicamentosValidator(bool value) {
+    _$getMedicamentosValidatorAtom
+        .reportWrite(value, super.getMedicamentosValidator, () {
+      super.getMedicamentosValidator = value;
+    });
+  }
+
   late final _$getCurrentUserAsyncAction =
       AsyncAction('_HomeStoreBase.getCurrentUser', context: context);
 
   @override
   Future<void> getCurrentUser() {
     return _$getCurrentUserAsyncAction.run(() => super.getCurrentUser());
+  }
+
+  late final _$getListaMedicamentosAsyncAction =
+      AsyncAction('_HomeStoreBase.getListaMedicamentos', context: context);
+
+  @override
+  Future<void> getListaMedicamentos() {
+    return _$getListaMedicamentosAsyncAction
+        .run(() => super.getListaMedicamentos());
+  }
+
+  late final _$createAlarmAsyncAction =
+      AsyncAction('_HomeStoreBase.createAlarm', context: context);
+
+  @override
+  Future<void> createAlarm(int id, String horaMinuto, String nomeMedicamento,
+      String doseMedicamento) {
+    return _$createAlarmAsyncAction.run(() =>
+        super.createAlarm(id, horaMinuto, nomeMedicamento, doseMedicamento));
   }
 
   late final _$logOutAsyncAction =
@@ -112,7 +164,9 @@ currentUserModel: ${currentUserModel},
 logOutstate: ${logOutstate},
 getValidator: ${getValidator},
 nameHomeController: ${nameHomeController},
-idadeHomeController: ${idadeHomeController}
+idadeHomeController: ${idadeHomeController},
+listMedicamentos: ${listMedicamentos},
+getMedicamentosValidator: ${getMedicamentosValidator}
     ''';
   }
 }

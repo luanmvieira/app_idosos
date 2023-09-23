@@ -17,56 +17,54 @@ class MedicacaoPageState extends State<MedicacaoPage> {
   @override
   void initState() {
     super.initState();
-    store.getCurrentUser();
+    store.getListaMedicamentos();
   }
   @override
   Widget build(BuildContext context) {
     return Observer(
-      builder: (_) => store.getValidator
+      builder: (_) => store.getMedicamentosValidator
           ? Container(
           color: Colors.white,
           alignment: Alignment.center,
           margin: const EdgeInsets.only(top: 20),
-          child: const SpinKitWave(
+            child: const SpinKitWave(
             color: Color(0xFF0F3671),
             size: 40,
           ))
           :Scaffold(
-            appBar: AppBar(
-            actions: [
-              IconButton(
-                icon: Icon(Icons.add), // Ícone que será exibido
-                onPressed: () async {
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AdicionarMedicamentoDialog();
-                  }
-
-                  );
-
-                },
+            floatingActionButton: Align(
+              alignment: Alignment.bottomRight,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 55.0),
+                child: FloatingActionButton(
+                  elevation: 10,
+                  child: Icon(Icons.add, color: Colors.white),
+                  onPressed: () async {
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AdicionarMedicamentoDialog();
+                        }
+                    );
+                  },
+                ),
               ),
-            ],
-
+            ),
+            appBar: AppBar(
               backgroundColor: Colors.blueAccent,
               elevation: 0,
               title: Text("Medicação")
           ),
-            body: ListView(
-              children: [
-                MedicamentoItem(
-                  nome: 'Paracetamol',
-                  dose: '500mg',
-                  horarios: ['8:00 AM', '12:00 PM', '6:00 PM'],
-                ),
-                MedicamentoItem(
-                  nome: 'Paracetamol',
-                  dose: '500mg',
-                  horarios: ['8:00 AM', '12:00 PM', '6:00 PM'],
-                ),
-
-              ],
+            body: ListView.builder(
+              itemCount: store.listMedicamentos.length,
+              itemBuilder: (context, index) {
+                return MedicamentoItem(
+                  id: store.listMedicamentos[index].id,
+                  nome: store.listMedicamentos[index].nome!,
+                  dose: store.listMedicamentos[index].dose!,
+                  horarios: store.listMedicamentos[index].horarios!
+                );
+              },
             ),
 
       ),
