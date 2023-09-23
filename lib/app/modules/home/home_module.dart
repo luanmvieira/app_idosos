@@ -1,5 +1,6 @@
-import 'package:app_idosos/app/modules/home/home_page.dart';
+import 'package:app_idosos/app/modules/home/pages/home_page.dart';
 import 'package:app_idosos/app/modules/home/home_store.dart';
+import 'package:app_idosos/app/modules/home/pages/medicacao_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class HomeModule extends Module {
@@ -7,6 +8,11 @@ class HomeModule extends Module {
   final List<Bind> binds = [Bind.lazySingleton((i) => HomeStore()),];
 
   @override
-  final List<ModularRoute> routes = [ChildRoute('/', child: (_, args) => HomePage()),];
+  final List<ModularRoute> routes = [
+    ChildRoute('/', child: (_, args) => HomePage()),
+    ChildRoute('/medicacao', child: (_, args) => MedicacaoPage()),
+  ]
+
+  ;
 
 }

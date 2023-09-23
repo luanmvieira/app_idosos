@@ -91,28 +91,33 @@ class HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              Container(
-                width: 130,
-                height: 30,
-                decoration: BoxDecoration(
-                  color: Colors.red,
-                  borderRadius: BorderRadius.circular(10.0), // Adiciona bordas curvas
-                ),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10.0, bottom: 10),
-                      child: Image.asset("assets/images/medicacao.png",
-                        height: 120 ,
-                        width: 120 ,
+              GestureDetector(
+                child: Container(
+                  width: 130,
+                  height: 30,
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.circular(10.0), // Adiciona bordas curvas
+                  ),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10.0, bottom: 10),
+                        child: Image.asset("assets/images/medicacao.png",
+                          height: 120 ,
+                          width: 120 ,
+                        ),
                       ),
-                    ),
-                    Text(
-                      'Medicação',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ],
+                      Text(
+                        'Medicação',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
                 ),
+                onTap: (){
+                  Modular.to.pushNamed("/home/medicacao");
+                },
               ),
               Container(
                 width: 130,
