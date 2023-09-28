@@ -149,6 +149,14 @@ mixin _$HomeStore on _HomeStoreBase, Store {
         super.createAlarm(id, horaMinuto, nomeMedicamento, doseMedicamento));
   }
 
+  late final _$deleteAlarmsAsyncAction =
+      AsyncAction('_HomeStoreBase.deleteAlarms', context: context);
+
+  @override
+  Future<bool> deleteAlarms(int id) {
+    return _$deleteAlarmsAsyncAction.run(() => super.deleteAlarms(id));
+  }
+
   late final _$logOutAsyncAction =
       AsyncAction('_HomeStoreBase.logOut', context: context);
 

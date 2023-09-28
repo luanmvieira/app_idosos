@@ -1,5 +1,9 @@
+import 'package:app_idosos/app/modules/home/home_store.dart';
+import 'package:app_idosos/db/models/medicacao.dart';
 import 'package:app_idosos/db/stores/store_definition/medicacao_store.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class MedicamentoItem extends StatelessWidget {
   final int id;
@@ -14,16 +18,41 @@ class MedicamentoItem extends StatelessWidget {
     required this.horarios,
   });
 
+  final HomeStore store = Modular.get();
+
   @override
   Widget build(BuildContext context) {
     return Dismissible(
       key: Key(nome),
-      onDismissed: (direction) {
+      onDismissed: (direction) async {
         // Ação quando o item é deslizado
         if (direction == DismissDirection.endToStart) {
 
         } else if (direction == DismissDirection.startToEnd) {
-          MedicacaoStore().remove(id);
+         bool deleted = await store.deleteAlarms(id);
+         if(deleted){
+           Fluttertoast.showToast(
+               msg: "Medicação removida com sucesso!",
+               toastLength: Toast.LENGTH_SHORT,
+               gravity: ToastGravity.BOTTOM,
+               timeInSecForIosWeb: 1,
+               backgroundColor: Colors.green,
+               textColor: Colors.white,
+               fontSize: 12.0
+           );
+           await store.getListaMedicamentos();
+         }else{
+           Fluttertoast.showToast(
+               msg: "Medicação não removida, tente novamente",
+               toastLength: Toast.LENGTH_SHORT,
+               gravity: ToastGravity.BOTTOM,
+               timeInSecForIosWeb: 1,
+               backgroundColor: Colors.red,
+               textColor: Colors.white,
+               fontSize: 12.0
+           );
+           await store.getListaMedicamentos();
+         }
 
         }
       },

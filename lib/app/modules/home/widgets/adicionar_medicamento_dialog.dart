@@ -106,16 +106,18 @@ class _AdicionarMedicamentoDialogState extends State<AdicionarMedicamentoDialog>
           child: Text('Adicionar'),
           onPressed: () async {
             Random random = Random();
+            List<int> idsAlarmes = [];
             medicacao.nome = _nomeController.text;
             medicacao.dose = _doseController.text;
             medicacao.horarios = _horarios;
             medicacao.sincronizado = false;
             for (var alarm in _horarios) {
               int randonid = random.nextInt(999999);
-              medicacao.idsAlarmes?.add(randonid);
+              idsAlarmes.add(randonid);
               await store.createAlarm(randonid, alarm, _nomeController.text, _doseController.text);
 
             }
+            medicacao.idsAlarmes = idsAlarmes;
             await medicacaoStore.put(medicacao);
             Modular.to.pop();
             await store.getListaMedicamentos();

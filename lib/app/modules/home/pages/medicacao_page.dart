@@ -34,20 +34,17 @@ class MedicacaoPageState extends State<MedicacaoPage> {
           :Scaffold(
             floatingActionButton: Align(
               alignment: Alignment.bottomRight,
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 55.0),
-                child: FloatingActionButton(
-                  elevation: 10,
-                  child: Icon(Icons.add, color: Colors.white),
-                  onPressed: () async {
-                    showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AdicionarMedicamentoDialog();
-                        }
-                    );
-                  },
-                ),
+              child: FloatingActionButton(
+                elevation: 10,
+                child: Icon(Icons.add, color: Colors.white),
+                onPressed: () async {
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AdicionarMedicamentoDialog();
+                      }
+                  );
+                },
               ),
             ),
             appBar: AppBar(
