@@ -1,6 +1,4 @@
-import 'package:app_idosos/app/modules/home/home_store.dart';
-import 'package:app_idosos/db/models/medicacao.dart';
-import 'package:app_idosos/db/stores/store_definition/medicacao_store.dart';
+import 'package:app_idosos/app/modules/medication/medication_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -18,7 +16,7 @@ class MedicamentoItem extends StatelessWidget {
     required this.horarios,
   });
 
-  final HomeStore store = Modular.get();
+  final MedicationStore store = Modular.get();
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +38,7 @@ class MedicamentoItem extends StatelessWidget {
                textColor: Colors.white,
                fontSize: 12.0
            );
-           await store.getListaMedicamentos();
+           await store.getListMedicamentos();
          }else{
            Fluttertoast.showToast(
                msg: "Medicação não removida, tente novamente",
@@ -51,7 +49,7 @@ class MedicamentoItem extends StatelessWidget {
                textColor: Colors.white,
                fontSize: 12.0
            );
-           await store.getListaMedicamentos();
+           await store.getListMedicamentos();
          }
 
         }

@@ -1,5 +1,5 @@
 import 'package:app_idosos/app/models/user_model.dart';
-import 'package:app_idosos/app/modules/login/repositories/db_login.dart';
+import 'package:app_idosos/app/repositories/db_login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';

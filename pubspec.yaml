@@ -74,6 +74,7 @@ dependencies:
   overlay_support: ^2.1.0
 
   liquid_progress_indicator_v2: ^0.5.0
+  water_bottle: ^0.0.7
 
 
   extended_masked_text: ^2.3.1
@@ -85,7 +86,7 @@ dev_dependencies:
 
 
 
-  mobx_codegen: ^2.3.0
+  mobx_codegen: ^2.4.0
   build_runner: ^2.3.3
   build_resolvers: ^2.3.2
   objectbox_generator: any

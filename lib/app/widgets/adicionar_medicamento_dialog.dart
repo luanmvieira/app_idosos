@@ -1,9 +1,9 @@
 import 'dart:math';
 
-import 'package:app_idosos/app/modules/home/home_store.dart';
-import 'package:app_idosos/db/models/medicacao.dart';
+
+import 'package:app_idosos/app/modules/medication/medication_store.dart';
+import 'package:app_idosos/db/models/medication.dart';
 import 'package:app_idosos/db/stores/store_definition/medicacao_store.dart';
-import 'package:app_idosos/objectbox.g.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -20,13 +20,13 @@ class AdicionarMedicamentoDialog extends StatefulWidget {
 }
 
 class _AdicionarMedicamentoDialogState extends State<AdicionarMedicamentoDialog> {
-  final HomeStore store = Modular.get();
+  final MedicationStore store = Modular.get();
   final TextEditingController _nomeController = TextEditingController();
   final TextEditingController _doseController = TextEditingController();
   final _horarioController =  MaskedTextController(mask: '00:00');
   final List<String> _horarios = [];
 
-  Medicacao medicacao = Medicacao();
+  Medication medicacao = Medication();
   MedicacaoStore medicacaoStore = MedicacaoStore();
 
   bool _isValidTimeFormat(String time) {
@@ -120,7 +120,7 @@ class _AdicionarMedicamentoDialogState extends State<AdicionarMedicamentoDialog>
             medicacao.idsAlarmes = idsAlarmes;
             await medicacaoStore.put(medicacao);
             Modular.to.pop();
-            await store.getListaMedicamentos();
+            await store.getListMedicamentos();
 
 
           },

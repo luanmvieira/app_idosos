@@ -9,7 +9,6 @@ class ConexaoFirebaseHome{
   final FirebaseFirestore _db = FirebaseFirestore.instance;
   UserModel _userm = UserModel();
   String emailCurrent = "";
-  List<UserModel> _userList = [];
 
   bool checkCurrentUser() {
     User? user = auth.currentUser;

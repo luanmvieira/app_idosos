@@ -12,16 +12,10 @@ class ConexaoFirebaseLogin {
   Future<UserModel> getUserData(String userlogin) async {
     UserModel _user = UserModel();
     QuerySnapshot _userQueryEmail = await _db.collection("usuarios").where("email", isEqualTo: userlogin).get();
-    QuerySnapshot _userQueryMatricula = await _db.collection("usuarios").where("matricula", isEqualTo: userlogin).get();
     if(_userQueryEmail.docs.isNotEmpty){
       print("não é vazio");
       _user = UserModel.fromMap(_userQueryEmail.docs.first);
       print("carregou o usermodel - email");
-    }
-    if(_userQueryMatricula.docs.isNotEmpty){
-      print("não é vazio");
-      _user = UserModel.fromMap(_userQueryMatricula.docs.first);
-      print("carregou o usermodel - matricula");
     }
     return _user;
   }

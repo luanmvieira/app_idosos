@@ -71,10 +71,10 @@ class HomePageState extends State<HomePage> {
                   crossAxisSpacing: 10.0,
                   children: [
                     Container(
-                      width: 130,
-                      height: 30,
+                      width: 65,
+                      height: 15,
                       decoration: BoxDecoration(
-                        color: Colors.red,
+                        color: Colors.lightBlue,
                         borderRadius: BorderRadius.circular(
                             10.0), // Adiciona bordas curvas
                       ),
@@ -91,17 +91,17 @@ class HomePageState extends State<HomePage> {
                           ),
                           Text(
                             'Usuário',
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: Colors.white, fontSize: 13.5),
                           ),
                         ],
                       ),
                     ),
                     GestureDetector(
                       child: Container(
-                        width: 130,
-                        height: 30,
+                        width: 65,
+                        height: 15,
                         decoration: BoxDecoration(
-                          color: Colors.red,
+                          color: Colors.lightGreen,
                           borderRadius: BorderRadius.circular(
                               10.0), // Adiciona bordas curvas
                         ),
@@ -118,20 +118,20 @@ class HomePageState extends State<HomePage> {
                             ),
                             Text(
                               'Medicação',
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(color: Colors.white, fontSize: 13.5),
                             ),
                           ],
                         ),
                       ),
                       onTap: () {
-                        Modular.to.pushNamed("/home/medicacao");
+                        Modular.to.pushNamed("/medication/");
                       },
                     ),
                     Container(
-                      width: 130,
-                      height: 30,
+                        width: 65,
+                        height: 15,
                       decoration: BoxDecoration(
-                        color: Colors.red,
+                        color: Colors.pink,
                         borderRadius: BorderRadius.circular(
                             10.0), // Adiciona bordas curvas
                       ),
@@ -148,16 +148,16 @@ class HomePageState extends State<HomePage> {
                           ),
                           Text(
                             'Alterações Comportamentais',
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: Colors.white, fontSize: 13.5),
                           ),
                         ],
                       ),
                     ),
                     Container(
-                      width: 130,
-                      height: 30,
+                      width: 65,
+                      height: 15,
                       decoration: BoxDecoration(
-                        color: Colors.red,
+                        color: Colors.indigoAccent,
                         borderRadius: BorderRadius.circular(
                             10.0), // Adiciona bordas curvas
                       ),
@@ -174,17 +174,17 @@ class HomePageState extends State<HomePage> {
                           ),
                           Text(
                             'Sinais de Alerta',
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: Colors.white, fontSize: 13),
                           ),
                         ],
                       ),
                     ),
                     GestureDetector(
                       child: Container(
-                        width: 130,
-                        height: 30,
+                        width: 65,
+                        height: 15,
                         decoration: BoxDecoration(
-                          color: Colors.red,
+                          color: Colors.lightBlueAccent,
                           borderRadius: BorderRadius.circular(
                               10.0), // Adiciona bordas curvas
                         ),
@@ -201,20 +201,20 @@ class HomePageState extends State<HomePage> {
                             ),
                             Text(
                               'Hidratação',
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(color: Colors.white, fontSize: 13.5),
                             ),
                           ],
                         ),
                       ),
                       onTap: (){
-                        Modular.to.pushNamed("/home/hidratacao");
+                        Modular.to.pushNamed("/hydration/");
                       },
                     ),
                     Container(
-                      width: 130,
-                      height: 30,
+                      width: 65,
+                      height: 15,
                       decoration: BoxDecoration(
-                        color: Colors.red,
+                        color: Colors.deepOrangeAccent,
                         borderRadius: BorderRadius.circular(
                             10.0), // Adiciona bordas curvas
                       ),
@@ -231,14 +231,14 @@ class HomePageState extends State<HomePage> {
                           ),
                           Text(
                             'Hora da Micçao',
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: Colors.white, fontSize: 13.5),
                           ),
                         ],
                       ),
                     ),
                     Container(
-                      width: 130,
-                      height: 30,
+                      width: 65,
+                      height: 15,
                       decoration: BoxDecoration(
                         color: Colors.red,
                         borderRadius: BorderRadius.circular(
@@ -257,7 +257,7 @@ class HomePageState extends State<HomePage> {
                           ),
                           Text(
                             'Telefones Úteis',
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: Colors.white, fontSize: 13.5),
                           ),
                         ],
                       ),

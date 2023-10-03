@@ -1,7 +1,7 @@
 import 'package:objectbox/objectbox.dart';
 
 @Entity()
-class Medicacao {
+class Medication {
   int id = 0;
 
   @Unique()
@@ -13,7 +13,7 @@ class Medicacao {
 
 
 
-  Medicacao(
+  Medication(
       {this.nome,
         this.dose,
         this.horarios,

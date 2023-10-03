@@ -1,4 +1,6 @@
 import 'package:app_idosos/app/modules/home/home_module.dart';
+import 'package:app_idosos/app/modules/hydration/hydration_module.dart';
+import 'package:app_idosos/app/modules/medication/medication_module.dart';
 import 'package:app_idosos/app/modules/register/register_module.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -17,6 +19,8 @@ class AppModule extends Module {
     ModuleRoute('/', module: LoginModule()),
     ModuleRoute('/home', module: HomeModule()),
     ModuleRoute('/registration', module: RegisterModule()),
+    ModuleRoute('/medication', module: MedicationModule()),
+    ModuleRoute('/hydration', module: HydrationModule()),
   ];
 
 }
