@@ -28,10 +28,11 @@ class RegisterPageState extends State<RegisterPage> {
           color: Colors.white,
           alignment: Alignment.center,
           margin: const EdgeInsets.only(top: 20),
-          child:  const SpinKitWave(
-            color: Color(0xFF0F3671),
-            size: 40,
-          )
+          child: Lottie.asset(
+              "assets/animations/loading_animation.json",
+              height: 300,
+              width: 300
+          ),
       ):Scaffold(
         appBar: AppBar(
           elevation: 0,
@@ -54,7 +55,7 @@ class RegisterPageState extends State<RegisterPage> {
                 const SizedBox(height:40),
                 Container(
                   width: MediaQuery.of(context).size.height * 0.90,
-                  height: MediaQuery.of(context).size.height * 0.60,
+                  height: MediaQuery.of(context).size.height * 0.63,
                   decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(

@@ -48,6 +48,7 @@ abstract class _RegisterStoreBase with Store {
     usuario.idade = idadeController.text;
     usuario.email = emailController.text;
     usuario.password = senhaController.text;
+    usuario.telefone = "(00) 00000-00000";
 
 
     resultCadastro = await dbCadastro.CadastraUsuario(usuario);

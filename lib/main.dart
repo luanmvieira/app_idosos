@@ -14,9 +14,9 @@ import 'app/app_widget.dart';
 
 
 configureSelectNotificationSubject() {
-  StreamSubscription? _subscription2;
+  StreamSubscription? subscription2;
   int? id;
-  _subscription2 ??= AlarmNotification.selectNotificationStream.stream
+  subscription2 ??= AlarmNotification.selectNotificationStream.stream
       .listen((String? payload) async {
     List<String> payloads = [];
     AlarmModel? alarmModel;

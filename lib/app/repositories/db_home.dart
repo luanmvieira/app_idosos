@@ -28,6 +28,15 @@ class ConexaoFirebaseHome{
     print("Email: ${_userm.email.toString()}");
     return _userm;
   }
+  Future<void> firebaseUpdateUser(UserModel user) async {
+    await _db.collection('usuarios').doc(user.id).update({
+      "nome"         : user.nome,
+      "idade"        : user.idade,
+      "email"        : user.email,
+      "telefone"     : user.telefone,
+    });
+  }
+
   Future logout() async {
     await auth.signOut();
     return true;

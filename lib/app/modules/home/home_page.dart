@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:app_idosos/app/modules/home/home_store.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -30,10 +31,12 @@ class HomePageState extends State<HomePage> {
               color: Colors.white,
               alignment: Alignment.center,
               margin: const EdgeInsets.only(top: 20),
-              child: const SpinKitWave(
-                color: Color(0xFF0F3671),
-                size: 40,
-              ))
+              child: Lottie.asset(
+                  "assets/animations/loading_animation.json",
+                  height: 300,
+                  width: 300
+              ),
+      )
           : Scaffold(
               appBar: AppBar(
                 actions: [
@@ -53,7 +56,7 @@ class HomePageState extends State<HomePage> {
                       store.nameHomeController,
                       style: TextStyle(fontSize: 13),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     Text(
@@ -70,31 +73,36 @@ class HomePageState extends State<HomePage> {
                   mainAxisSpacing: 10.0,
                   crossAxisSpacing: 10.0,
                   children: [
-                    Container(
-                      width: 65,
-                      height: 15,
-                      decoration: BoxDecoration(
-                        color: Colors.lightBlue,
-                        borderRadius: BorderRadius.circular(
-                            10.0), // Adiciona bordas curvas
-                      ),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(top: 10.0, bottom: 10),
-                            child: Image.asset(
-                              "assets/images/dados.png",
-                              height: 120,
-                              width: 120,
+                    GestureDetector(
+                      child: Container(
+                        width: 65,
+                        height: 15,
+                        decoration: BoxDecoration(
+                          color: Colors.lightBlue,
+                          borderRadius: BorderRadius.circular(
+                              10.0), // Adiciona bordas curvas
+                        ),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 10.0, bottom: 10),
+                              child: Image.asset(
+                                "assets/images/dados.png",
+                                height: 120,
+                                width: 120,
+                              ),
                             ),
-                          ),
-                          Text(
-                            'Usuário',
-                            style: TextStyle(color: Colors.white, fontSize: 13.5),
-                          ),
-                        ],
+                            Text(
+                              'Usuário',
+                              style: TextStyle(color: Colors.white, fontSize: 13.5),
+                            ),
+                          ],
+                        ),
                       ),
+                      onTap: () {
+                        Modular.to.pushNamed("/user/");
+                      },
                     ),
                     GestureDetector(
                       child: Container(
