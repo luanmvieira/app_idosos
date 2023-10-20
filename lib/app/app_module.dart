@@ -1,3 +1,4 @@
+import 'package:app_idosos/app/modules/behaviors/behaviors_module.dart';
 import 'package:app_idosos/app/modules/home/home_module.dart';
 import 'package:app_idosos/app/modules/hydration/hydration_module.dart';
 import 'package:app_idosos/app/modules/medication/medication_module.dart';
@@ -13,6 +14,7 @@ class AppModule extends Module {
     Bind.lazySingleton((i) => LoginModule()),
     Bind.lazySingleton((i) => HomeModule()),
     Bind.lazySingleton((i) => RegisterModule()),
+    Bind.lazySingleton((i) => BehaviorsModule()),
   ];
 
   @override
@@ -23,6 +25,7 @@ class AppModule extends Module {
     ModuleRoute('/medication', module: MedicationModule()),
     ModuleRoute('/hydration', module: HydrationModule()),
     ModuleRoute('/user', module: UserModule()),
+    ModuleRoute('/behaviors', module: BehaviorsModule()),
   ];
 
 }

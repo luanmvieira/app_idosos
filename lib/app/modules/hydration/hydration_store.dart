@@ -65,7 +65,7 @@ abstract class _HydrationStoreBase with Store {
   @action
   setNewValueHydration(double quantidade) async {
     setValidator = true;
-    String date = "${DateTime.now().weekday}/${DateTime.now().day}/${DateTime.now().year}";
+    String date = "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}";
     List<Hydration> listDados = await HidratacaoStore().getAll();
     var dados = listDados.firstWhere((element) => element.data == date, orElse: () => Hydration(data: "", consumido: 0.0, meta: 0.0, sincronizado: false) );
     if(dados.data == ""){

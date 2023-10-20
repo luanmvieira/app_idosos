@@ -135,31 +135,36 @@ class HomePageState extends State<HomePage> {
                         Modular.to.pushNamed("/medication/");
                       },
                     ),
-                    Container(
-                        width: 65,
-                        height: 15,
-                      decoration: BoxDecoration(
-                        color: Colors.pink,
-                        borderRadius: BorderRadius.circular(
-                            10.0), // Adiciona bordas curvas
-                      ),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(top: 10.0, bottom: 10),
-                            child: Image.asset(
-                              "assets/images/idoso.png",
-                              height: 120,
-                              width: 120,
+                    GestureDetector(
+                      child: Container(
+                          width: 65,
+                          height: 15,
+                        decoration: BoxDecoration(
+                          color: Colors.pink,
+                          borderRadius: BorderRadius.circular(
+                              10.0), // Adiciona bordas curvas
+                        ),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 10.0, bottom: 10),
+                              child: Image.asset(
+                                "assets/images/idoso.png",
+                                height: 120,
+                                width: 120,
+                              ),
                             ),
-                          ),
-                          Text(
-                            'Alterações Comportamentais',
-                            style: TextStyle(color: Colors.white, fontSize: 13.5),
-                          ),
-                        ],
+                            Text(
+                              'Alterações Comportamentais',
+                              style: TextStyle(color: Colors.white, fontSize: 13.5),
+                            ),
+                          ],
+                        ),
                       ),
+                      onTap: () {
+                        Modular.to.pushNamed("/behaviors/");
+                      },
                     ),
                     Container(
                       width: 65,
