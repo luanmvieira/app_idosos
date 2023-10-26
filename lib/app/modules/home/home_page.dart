@@ -1,7 +1,6 @@
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:app_idosos/app/modules/home/home_store.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -70,7 +69,7 @@ class HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.all(8.0),
                 child: GridView.count(
                   crossAxisCount: 2,
-                  mainAxisSpacing: 10.0,
+                  mainAxisSpacing: 15.0,
                   crossAxisSpacing: 10.0,
                   children: [
                     GestureDetector(
@@ -94,7 +93,7 @@ class HomePageState extends State<HomePage> {
                               ),
                             ),
                             Text(
-                              'Usuário',
+                              'Dados do Idoso',
                               style: TextStyle(color: Colors.white, fontSize: 13.5),
                             ),
                           ],
@@ -109,7 +108,7 @@ class HomePageState extends State<HomePage> {
                         width: 65,
                         height: 15,
                         decoration: BoxDecoration(
-                          color: Colors.lightGreen,
+                          color: Colors.lightBlue,
                           borderRadius: BorderRadius.circular(
                               10.0), // Adiciona bordas curvas
                         ),
@@ -140,7 +139,7 @@ class HomePageState extends State<HomePage> {
                           width: 65,
                           height: 15,
                         decoration: BoxDecoration(
-                          color: Colors.pink,
+                          color: Colors.lightBlue,
                           borderRadius: BorderRadius.circular(
                               10.0), // Adiciona bordas curvas
                         ),
@@ -170,7 +169,7 @@ class HomePageState extends State<HomePage> {
                       width: 65,
                       height: 15,
                       decoration: BoxDecoration(
-                        color: Colors.indigoAccent,
+                        color: Colors.lightBlue,
                         borderRadius: BorderRadius.circular(
                             10.0), // Adiciona bordas curvas
                       ),
@@ -197,7 +196,7 @@ class HomePageState extends State<HomePage> {
                         width: 65,
                         height: 15,
                         decoration: BoxDecoration(
-                          color: Colors.lightBlueAccent,
+                          color: Colors.lightBlue,
                           borderRadius: BorderRadius.circular(
                               10.0), // Adiciona bordas curvas
                         ),
@@ -213,7 +212,7 @@ class HomePageState extends State<HomePage> {
                               ),
                             ),
                             Text(
-                              'Hidratação',
+                              'Beber Água',
                               style: TextStyle(color: Colors.white, fontSize: 13.5),
                             ),
                           ],
@@ -227,33 +226,7 @@ class HomePageState extends State<HomePage> {
                       width: 65,
                       height: 15,
                       decoration: BoxDecoration(
-                        color: Colors.deepOrangeAccent,
-                        borderRadius: BorderRadius.circular(
-                            10.0), // Adiciona bordas curvas
-                      ),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(top: 10.0, bottom: 10),
-                            child: Image.asset(
-                              "assets/images/miccao.png",
-                              height: 120,
-                              width: 120,
-                            ),
-                          ),
-                          Text(
-                            'Hora da Micçao',
-                            style: TextStyle(color: Colors.white, fontSize: 13.5),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      width: 65,
-                      height: 15,
-                      decoration: BoxDecoration(
-                        color: Colors.red,
+                        color: Colors.lightBlue,
                         borderRadius: BorderRadius.circular(
                             10.0), // Adiciona bordas curvas
                       ),
