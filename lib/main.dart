@@ -1,6 +1,10 @@
 import 'dart:async';
+import 'dart:math';
 
+import 'package:app_idosos/app/modules/medication/medication_store.dart';
+import 'package:app_idosos/db/stores/store_definition/medicacao_store.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:cron/cron.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -40,12 +44,52 @@ configureSelectNotificationSubject() {
   });
 }
 
+Future<void> remarcarNotificacoes() async{
+  List<int> ids = [];
+  var medicacoes = await MedicacaoStore().getAll();
+  if(medicacoes != null) {
+    MedicationStore store = MedicationStore();
+    for(var medicacao in medicacoes){
+      for (var horario in medicacao.horarios!){
+        Random random = Random();
+        int randomid = random.nextInt(999999999);
+        await store.createNotification(randomid, horario,medicacao.nome!, medicacao.dose!);
+        ids.add(randomid);
+      }
+      medicacao.idsAlarmes = ids;
+      await MedicacaoStore().put(medicacao);
+    }
+  }
+}
+
+Future<void> marcarAlarmes() async {
+  MedicationStore store = MedicationStore();
+  Random random = Random();
+  await store.deleteAlarms();
+  int randomid = random.nextInt(999999999);
+  await store.createAlarm(randomid + 1,"7:00","Hora de tomar água", "Tome Água");
+  await store.createAlarm(randomid + 2,"9:00","Hora de tomar água", "Tome Água");
+  await store.createAlarm(randomid + 3,"8:00","Hora de tomar água", "Tome Água");
+  await store.createAlarm(randomid + 4,"10:00","Hora de tomar água", "Tome Água");
+  await store.createAlarm(randomid + 5,"11:00","Hora de tomar água", "Tome Água");
+  await store.createAlarm(randomid + 6,"12:30","Hora de tomar água", "Tome Água");
+  await store.createAlarm(randomid + 7,"13:00","Hora de tomar água", "Tome Água");
+  await store.createAlarm(randomid + 8,"13:30","Hora de tomar água", "Tome Água");
+  await store.createAlarm(randomid + 9,"14:30","Hora de tomar água", "Tome Água");
+  await store.createAlarm(randomid + 11,"15:00","Hora de tomar água", "Tome Água");
+  await store.createAlarm(randomid + 12,"16:00","Hora de tomar água", "Tome Água");
+  await store.createAlarm(randomid + 13,"18:00","Hora de tomar água", "Tome Água");
+
+}
+
 
 void main() async {
+  final cron = Cron();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,);
   await PeriodicAlarm.init();
+  await marcarAlarmes();
   configureSelectNotificationSubject();
   AwesomeNotifications().initialize(
     null,
@@ -60,11 +104,19 @@ void main() async {
         enableLights: true,
         enableVibration: true,
         importance: NotificationImportance.Max,
-
-
       ),
     ],
   );
+
+
+  cron.schedule(Schedule.parse('0 0 * * *'), () async {
+    print("Entrou no cron scheduled");
+    await remarcarNotificacoes();
+    await marcarAlarmes();
+  });
+
+
+
 
 
 

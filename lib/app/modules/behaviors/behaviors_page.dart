@@ -93,7 +93,7 @@ class BehaviorsPageState extends State<BehaviorsPage> {
                         width: 65,
                         height: 15,
                         decoration: BoxDecoration(
-                          color: Colors.lightGreen,
+                          color: Colors.lightBlue,
                           borderRadius: BorderRadius.circular(
                               10.0), // Adiciona bordas curvas
                         ),
@@ -130,38 +130,7 @@ class BehaviorsPageState extends State<BehaviorsPage> {
                       width: 65,
                       height: 15,
                       decoration: BoxDecoration(
-                        color: Colors.pink,
-                        borderRadius: BorderRadius.circular(
-                            10.0), // Adiciona bordas curvas
-                      ),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(top: 10.0, bottom: 10),
-                            child: Image.asset(
-                              "assets/images/comportamento_sexual.png",
-                              height: 120,
-                              width: 120,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                            child: Text(
-                              'Alterações no comportamento Sexual',
-                              textAlign: TextAlign.center,
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 13.5),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      width: 65,
-                      height: 15,
-                      decoration: BoxDecoration(
-                        color: Colors.indigoAccent,
+                        color: Colors.lightBlue,
                         borderRadius: BorderRadius.circular(
                             10.0), // Adiciona bordas curvas
                       ),
@@ -188,7 +157,7 @@ class BehaviorsPageState extends State<BehaviorsPage> {
                         width: 65,
                         height: 15,
                         decoration: BoxDecoration(
-                          color: Colors.lightBlueAccent,
+                          color: Colors.lightBlue,
                           borderRadius: BorderRadius.circular(
                               10.0), // Adiciona bordas curvas
                         ),
@@ -219,7 +188,7 @@ class BehaviorsPageState extends State<BehaviorsPage> {
                       width: 65,
                       height: 15,
                       decoration: BoxDecoration(
-                        color: Colors.deepOrangeAccent,
+                        color: Colors.lightBlue,
                         borderRadius: BorderRadius.circular(
                             10.0), // Adiciona bordas curvas
                       ),
@@ -246,7 +215,7 @@ class BehaviorsPageState extends State<BehaviorsPage> {
                       width: 65,
                       height: 15,
                       decoration: BoxDecoration(
-                        color: Colors.red,
+                        color: Colors.lightBlue,
                         borderRadius: BorderRadius.circular(
                             10.0), // Adiciona bordas curvas
                       ),
@@ -262,7 +231,7 @@ class BehaviorsPageState extends State<BehaviorsPage> {
                             ),
                           ),
                           Text(
-                            'Alucinações',
+                            'Alucinações e Delirios',
                             style:
                                 TextStyle(color: Colors.white, fontSize: 13.5),
                           ),
@@ -273,34 +242,7 @@ class BehaviorsPageState extends State<BehaviorsPage> {
                       width: 65,
                       height: 15,
                       decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(
-                            10.0), // Adiciona bordas curvas
-                      ),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding:
-                            const EdgeInsets.only(top: 10.0, bottom: 10),
-                            child: Image.asset(
-                              "assets/images/ideias_delirantes.png",
-                              height: 120,
-                              width: 120,
-                            ),
-                          ),
-                          Text(
-                            'Delirios',
-                            style:
-                            TextStyle(color: Colors.white, fontSize: 13.5),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      width: 65,
-                      height: 15,
-                      decoration: BoxDecoration(
-                        color: Colors.red,
+                        color: Colors.lightBlue,
                         borderRadius: BorderRadius.circular(
                             10.0), // Adiciona bordas curvas
                       ),
@@ -315,7 +257,7 @@ class BehaviorsPageState extends State<BehaviorsPage> {
                               width: 120,
                             ),
                           ),
-                          Text(
+                          const Text(
                             'Aversão à Banho',
                             style:
                             TextStyle(color: Colors.white, fontSize: 13.5),
@@ -327,7 +269,7 @@ class BehaviorsPageState extends State<BehaviorsPage> {
                       width: 65,
                       height: 15,
                       decoration: BoxDecoration(
-                        color: Colors.red,
+                        color: Colors.lightBlue,
                         borderRadius: BorderRadius.circular(
                             10.0), // Adiciona bordas curvas
                       ),
@@ -342,7 +284,7 @@ class BehaviorsPageState extends State<BehaviorsPage> {
                               width: 120,
                             ),
                           ),
-                          Text(
+                          const Text(
                             'Dificuldades com Vestuário',
                             style:
                             TextStyle(color: Colors.white, fontSize: 13.5),
@@ -354,7 +296,7 @@ class BehaviorsPageState extends State<BehaviorsPage> {
                       width: 65,
                       height: 15,
                       decoration: BoxDecoration(
-                        color: Colors.red,
+                        color: Colors.lightBlue,
                         borderRadius: BorderRadius.circular(
                             10.0), // Adiciona bordas curvas
                       ),
@@ -369,7 +311,7 @@ class BehaviorsPageState extends State<BehaviorsPage> {
                               width: 120,
                             ),
                           ),
-                          Text(
+                          const Text(
                             'Depressão',
                             style:
                             TextStyle(color: Colors.white, fontSize: 13.5),

@@ -1,12 +1,15 @@
 import 'package:app_idosos/db/models/medication.dart';
 import 'package:app_idosos/db/stores/store_definition/medicacao_store.dart';
+import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:flutter_alarm_background_trigger/flutter_alarm_background_trigger.dart';
+import 'package:flutter_alarm_clock/flutter_alarm_clock.dart';
 import 'package:mobx/mobx.dart';
 import 'package:periodic_alarm/model/alarms_model.dart';
 import 'package:periodic_alarm/periodic_alarm.dart';
 
 part 'medication_store.g.dart';
 
-class MedicationStore = _MedicationStoreBase with _$MedicationStore;
+class  MedicationStore = _MedicationStoreBase with _$MedicationStore;
 abstract class _MedicationStoreBase with Store {
 
   @observable
@@ -24,8 +27,8 @@ abstract class _MedicationStoreBase with Store {
   }
 
   @action
-  Future<void> createAlarm(int id,String horaMinuto, String nomeMedicamento, String doseMedicamento ) async {
-
+  Future<void> createAlarm(int id,String horaMinuto, String title, String body ) async {
+    
     List<String> partes = horaMinuto.split(":");
     String hora = partes[0];
     String minuto = partes[1];
@@ -40,8 +43,8 @@ abstract class _MedicationStoreBase with Store {
       id: id,
       dateTime: time,
       assetAudioPath: 'assets/alarms/alarme_remedio.mp3',
-      notificationTitle: 'Está na horá do medicamento : ${nomeMedicamento}',
-      notificationBody: 'Está na horá do medicamento ${nomeMedicamento} de dose ${doseMedicamento}',
+      notificationTitle: title,
+      notificationBody: body,
       sunday: true,
       monday: true,
       tuesday: true,
@@ -56,20 +59,61 @@ abstract class _MedicationStoreBase with Store {
       musicVolume: 1,
       incMusicVolume:1,
       snooze: 3,
+      enableNotificationOnKill: true,
     );
 
-    PeriodicAlarm.setPeriodicAlarm(alarmModel: alarmModel,);
+    await PeriodicAlarm.setPeriodicAlarm(alarmModel: alarmModel,);
 
   }
 
   @action
-  Future <bool> deleteAlarms(int id) async{
+  Future <void> deleteAlarms() async{
+    var listaAlarmes = PeriodicAlarm.getAlarms();
+    if(listaAlarmes != null && listaAlarmes.isNotEmpty){
+      for(var alarm in listaAlarmes){
+        PeriodicAlarm.deleteAlarm(alarm.id);
+      }
+    }
+  }
+
+
+  @action
+  Future<void> createNotification(int id,String horaMinuto, String nomeMedicamento, String doseMedicamento ) async {
+    List<String> partes = horaMinuto.split(":");
+    String hora = partes[0];
+    String minuto = partes[1];
+    DateTime time = DateTime(
+        DateTime.now().year,
+        DateTime.now().month,
+        DateTime.now().day,
+        int.parse(hora),
+        int.parse(minuto),
+        0 );
+    await AwesomeNotifications().createNotification(
+        content: NotificationContent(
+          id: id,
+          channelKey: 'basic_channel',
+          title: 'Está na hora do medicamento : ${nomeMedicamento}',
+          body: 'Dose: ${doseMedicamento}',
+          wakeUpScreen: true,
+          category: NotificationCategory.Reminder,
+          autoDismissible: false,
+          displayOnForeground: true,
+          displayOnBackground: true,
+        ),
+        schedule: NotificationCalendar.fromDate(date: time),
+    );
+  }
+
+  @action
+  Future <bool> deleteNotifications(int id) async{
     var medicacao = await MedicacaoStore().get(id);
     var listaAlarmes = medicacao!.idsAlarmes;
     for(var alarmId in listaAlarmes!){
-      PeriodicAlarm.deleteAlarm(alarmId);
+      await AwesomeNotifications().cancelSchedule(alarmId);
     }
-    return MedicacaoStore().remove(id);
+    return await MedicacaoStore().remove(id);
 
   }
+
 }

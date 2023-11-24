@@ -69,17 +69,25 @@ dependencies:
   flutter_alarm_background_trigger: ^1.0.2
   timezone: ^0.9.2
   periodic_alarm: ^0.0.41
+  flutter_alarm_clock: ^0.1.1
+
   #notificação
   awesome_notifications: ^0.7.4+1
   overlay_support: ^2.1.0
+
   #Tela Hidydration
   liquid_progress_indicator_v2: ^0.5.0
   water_bottle: ^0.0.7
+
+  #Agendador
+  cron: ^0.5.1
 
 
   extended_masked_text: ^2.3.1
   #icons
   material_symbols_icons: ^4.2671.0
+
+
 
 
 dev_dependencies:

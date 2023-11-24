@@ -212,7 +212,7 @@ class HomePageState extends State<HomePage> {
                               ),
                             ),
                             Text(
-                              'Beber Água',
+                              'Ingestão de Liquidos',
                               style: TextStyle(color: Colors.white, fontSize: 13.5),
                             ),
                           ],

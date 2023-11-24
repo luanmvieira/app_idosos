@@ -55,18 +55,37 @@ mixin _$MedicationStore on _MedicationStoreBase, Store {
       AsyncAction('_MedicationStoreBase.createAlarm', context: context);
 
   @override
-  Future<void> createAlarm(int id, String horaMinuto, String nomeMedicamento,
-      String doseMedicamento) {
-    return _$createAlarmAsyncAction.run(() =>
-        super.createAlarm(id, horaMinuto, nomeMedicamento, doseMedicamento));
+  Future<void> createAlarm(
+      int id, String horaMinuto, String title, String body) {
+    return _$createAlarmAsyncAction
+        .run(() => super.createAlarm(id, horaMinuto, title, body));
   }
 
   late final _$deleteAlarmsAsyncAction =
       AsyncAction('_MedicationStoreBase.deleteAlarms', context: context);
 
   @override
-  Future<bool> deleteAlarms(int id) {
-    return _$deleteAlarmsAsyncAction.run(() => super.deleteAlarms(id));
+  Future<void> deleteAlarms() {
+    return _$deleteAlarmsAsyncAction.run(() => super.deleteAlarms());
+  }
+
+  late final _$createNotificationAsyncAction =
+      AsyncAction('_MedicationStoreBase.createNotification', context: context);
+
+  @override
+  Future<void> createNotification(int id, String horaMinuto,
+      String nomeMedicamento, String doseMedicamento) {
+    return _$createNotificationAsyncAction.run(() => super
+        .createNotification(id, horaMinuto, nomeMedicamento, doseMedicamento));
+  }
+
+  late final _$deleteNotificationsAsyncAction =
+      AsyncAction('_MedicationStoreBase.deleteNotifications', context: context);
+
+  @override
+  Future<bool> deleteNotifications(int id) {
+    return _$deleteNotificationsAsyncAction
+        .run(() => super.deleteNotifications(id));
   }
 
   @override

@@ -27,7 +27,7 @@ class MedicamentoItem extends StatelessWidget {
         if (direction == DismissDirection.endToStart) {
 
         } else if (direction == DismissDirection.startToEnd) {
-         bool deleted = await store.deleteAlarms(id);
+         bool deleted = await store.deleteNotifications(id);
          if(deleted){
            Fluttertoast.showToast(
                msg: "Medicação removida com sucesso!",

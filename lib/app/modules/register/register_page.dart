@@ -144,7 +144,7 @@ class RegisterPageState extends State<RegisterPage> {
                                       textColor: Colors.white,
                                       fontSize: 12.0
                                   );
-                                  Modular.to.navigate('/home');
+                                  Modular.to.navigate('/home/');
                                 }else{
                                   Fluttertoast.showToast(
                                       msg: "Erro ao realizar cadastro, verifique os dados e tente novamente!",

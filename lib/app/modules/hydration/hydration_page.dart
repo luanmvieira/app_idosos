@@ -73,7 +73,7 @@ class HydrationPageState extends State<HydrationPage> {
       appBar: AppBar(
         backgroundColor: Colors.blueAccent,
         elevation: 0,
-        title: Text("Hidratação"),
+        title: Text("Ingestão de Liquidos"),
       ),
       body: Observer(
         builder: (_) => store.getValidator || store.setValidator
@@ -134,7 +134,9 @@ class HydrationPageState extends State<HydrationPage> {
                           children: [
                             Observer(
                               builder: (_) => Text(
-                                "${store.meta}ml",
+                                store.meta > 1000
+                                    ? "${store.meta/1000} Litros"
+                                    : "${store.meta} ml",
                                 style: TextStyle(fontSize: 19),
                               ),
                             ),
@@ -155,7 +157,9 @@ class HydrationPageState extends State<HydrationPage> {
                           children: [
                             Observer(
                               builder: (_) => Text(
-                                "${store.consumido}ml",
+                                store.consumido > 1000
+                                    ? "${store.consumido/1000} Litros"
+                                    : "${store.consumido} ml",
                                 style: TextStyle(fontSize: 19),
                               ),
                             ),

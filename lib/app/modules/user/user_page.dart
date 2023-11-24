@@ -34,7 +34,7 @@ class UserPageState extends State<UserPage> {
         backgroundColor: Colors.blueAccent,
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
-          title: Text("Usuário"),
+          title: Text("Dados do Usuário"),
           actions: [
             IconButton(
               icon: Icon(Icons.check), // Ícone que será exibido
