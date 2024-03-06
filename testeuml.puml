@@ -1,0 +1,776 @@
+@startuml
+set namespaceSeparator ::
+
+class "app_idosos::app::app_module.dart::AppModule" {
+  +List<Bind<Object>> binds
+  +List<ModularRoute> routes
+}
+
+"flutter_modular::src::presenter::models::module.dart::Module" <|-- "app_idosos::app::app_module.dart::AppModule"
+
+class "app_idosos::app::app_widget.dart::AppWidget" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "app_idosos::app::app_widget.dart::AppWidget"
+
+class "app_idosos::app::models::user_model.dart::UserModel" {
+  +String id
+  +String nome
+  +String idade
+  +String email
+  +String password
+  +String telefone
+  +Map<String, dynamic> toMap()
+}
+
+class "app_idosos::app::modules::behaviors::behaviors_module.dart::BehaviorsModule" {
+  +List<Bind<Object>> binds
+  +List<ModularRoute> routes
+}
+
+"flutter_modular::src::presenter::models::module.dart::Module" <|-- "app_idosos::app::modules::behaviors::behaviors_module.dart::BehaviorsModule"
+
+class "app_idosos::app::modules::behaviors::behaviors_page.dart::BehaviorsPage" {
+  +String title
+  +BehaviorsPageState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "app_idosos::app::modules::behaviors::behaviors_page.dart::BehaviorsPage"
+
+class "app_idosos::app::modules::behaviors::behaviors_page.dart::BehaviorsPageState" {
+  +HomeStore store
+  +void initState()
+  +Widget build()
+}
+
+"app_idosos::app::modules::behaviors::behaviors_page.dart::BehaviorsPageState" o-- "app_idosos::app::modules::home::home_store.dart::HomeStore"
+"flutter::src::widgets::framework.dart::State" <|-- "app_idosos::app::modules::behaviors::behaviors_page.dart::BehaviorsPageState"
+
+class "app_idosos::app::modules::behaviors::behaviors_store.dart::BehaviorsStore" {
+}
+
+"app_idosos::app::modules::behaviors::behaviors_store.dart::_BehaviorsStoreBase" <|-- "app_idosos::app::modules::behaviors::behaviors_store.dart::BehaviorsStore"
+"app_idosos::app::modules::behaviors::behaviors_store.dart::_$BehaviorsStore" <|-- "app_idosos::app::modules::behaviors::behaviors_store.dart::BehaviorsStore"
+
+abstract class "app_idosos::app::modules::behaviors::behaviors_store.dart::_BehaviorsStoreBase" {
+  +int value
+  +void increment()
+}
+
+"mobx::src::api::store.dart::Store" <|-- "app_idosos::app::modules::behaviors::behaviors_store.dart::_BehaviorsStoreBase"
+
+abstract class "app_idosos::app::modules::behaviors::behaviors_store.dart::_$BehaviorsStore" {
+  -Atom _$valueAtom
+  -ActionController _$_BehaviorsStoreBaseActionController
+  +int value
+  +void increment()
+  +String toString()
+}
+
+"app_idosos::app::modules::behaviors::behaviors_store.dart::_$BehaviorsStore" o-- "mobx::src::core.dart::Atom"
+"app_idosos::app::modules::behaviors::behaviors_store.dart::_$BehaviorsStore" o-- "mobx::src::core.dart::ActionController"
+
+class "app_idosos::app::modules::behaviors::widgets::card_alimentacao.dart::CardAlimentacao" {
+  +_CardAlimentacaoState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "app_idosos::app::modules::behaviors::widgets::card_alimentacao.dart::CardAlimentacao"
+
+class "app_idosos::app::modules::behaviors::widgets::card_alimentacao.dart::_CardAlimentacaoState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "app_idosos::app::modules::behaviors::widgets::card_alimentacao.dart::_CardAlimentacaoState"
+
+class "app_idosos::app::modules::behaviors::widgets::card_sono.dart::CardSono" {
+  +_CardSonoState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "app_idosos::app::modules::behaviors::widgets::card_sono.dart::CardSono"
+
+class "app_idosos::app::modules::behaviors::widgets::card_sono.dart::_CardSonoState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "app_idosos::app::modules::behaviors::widgets::card_sono.dart::_CardSonoState"
+
+class "app_idosos::app::modules::home::home_module.dart::HomeModule" {
+  +List<Bind<Object>> binds
+  +List<ModularRoute> routes
+}
+
+"flutter_modular::src::presenter::models::module.dart::Module" <|-- "app_idosos::app::modules::home::home_module.dart::HomeModule"
+
+class "app_idosos::app::modules::home::home_page.dart::HomePage" {
+  +String title
+  +HomePageState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "app_idosos::app::modules::home::home_page.dart::HomePage"
+
+class "app_idosos::app::modules::home::home_page.dart::HomePageState" {
+  +HomeStore store
+  +void initState()
+  +Widget build()
+}
+
+"app_idosos::app::modules::home::home_page.dart::HomePageState" o-- "app_idosos::app::modules::home::home_store.dart::HomeStore"
+"flutter::src::widgets::framework.dart::State" <|-- "app_idosos::app::modules::home::home_page.dart::HomePageState"
+
+class "app_idosos::app::modules::home::home_store.dart::HomeStore" {
+}
+
+"app_idosos::app::modules::home::home_store.dart::_HomeStoreBase" <|-- "app_idosos::app::modules::home::home_store.dart::HomeStore"
+"app_idosos::app::modules::home::home_store.dart::_$HomeStore" <|-- "app_idosos::app::modules::home::home_store.dart::HomeStore"
+
+abstract class "app_idosos::app::modules::home::home_store.dart::_HomeStoreBase" {
+  -ConexaoFirebaseHome _dbHome
+  +UserModel currentUserModel
+  +bool logOutstate
+  +bool getValidator
+  +String nameHomeController
+  +String idadeHomeController
+  +dynamic getCurrentUser()
+  +dynamic logOut()
+}
+
+"app_idosos::app::modules::home::home_store.dart::_HomeStoreBase" o-- "app_idosos::app::repositories::db_home.dart::ConexaoFirebaseHome"
+"app_idosos::app::modules::home::home_store.dart::_HomeStoreBase" o-- "app_idosos::app::models::user_model.dart::UserModel"
+"mobx::src::api::store.dart::Store" <|-- "app_idosos::app::modules::home::home_store.dart::_HomeStoreBase"
+
+abstract class "app_idosos::app::modules::home::home_store.dart::_$HomeStore" {
+  -Atom _$currentUserModelAtom
+  -Atom _$logOutstateAtom
+  -Atom _$getValidatorAtom
+  -Atom _$nameHomeControllerAtom
+  -Atom _$idadeHomeControllerAtom
+  -AsyncAction _$getCurrentUserAsyncAction
+  -AsyncAction _$logOutAsyncAction
+  +UserModel currentUserModel
+  +bool logOutstate
+  +bool getValidator
+  +String nameHomeController
+  +String idadeHomeController
+  +dynamic getCurrentUser()
+  +dynamic logOut()
+  +String toString()
+}
+
+"app_idosos::app::modules::home::home_store.dart::_$HomeStore" o-- "mobx::src::core.dart::Atom"
+"app_idosos::app::modules::home::home_store.dart::_$HomeStore" o-- "mobx::src::api::async.dart::AsyncAction"
+"app_idosos::app::modules::home::home_store.dart::_$HomeStore" o-- "app_idosos::app::models::user_model.dart::UserModel"
+
+class "app_idosos::app::modules::hydration::hydration_module.dart::HydrationModule" {
+  +List<Bind<Object>> binds
+  +List<ModularRoute> routes
+}
+
+"flutter_modular::src::presenter::models::module.dart::Module" <|-- "app_idosos::app::modules::hydration::hydration_module.dart::HydrationModule"
+
+class "app_idosos::app::modules::hydration::hydration_page.dart::HydrationPage" {
+  +HydrationPageState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "app_idosos::app::modules::hydration::hydration_page.dart::HydrationPage"
+
+class "app_idosos::app::modules::hydration::hydration_page.dart::HydrationPageState" {
+  +HydrationStore store
+  +bool isSelected1
+  +bool isSelected2
+  +bool isSelected3
+  +bool isSelected4
+  +bool isSelected5
+  +bool isSelected6
+  +bool isSelected7
+  +bool isSelected8
+  +bool isSelected9
+  +bool isSelected10
+  +void initState()
+  +Widget build()
+}
+
+"app_idosos::app::modules::hydration::hydration_page.dart::HydrationPageState" o-- "app_idosos::app::modules::hydration::hydration_store.dart::HydrationStore"
+"flutter::src::widgets::framework.dart::State" <|-- "app_idosos::app::modules::hydration::hydration_page.dart::HydrationPageState"
+
+class "app_idosos::app::modules::hydration::hydration_store.dart::HydrationStore" {
+}
+
+"app_idosos::app::modules::hydration::hydration_store.dart::_HydrationStoreBase" <|-- "app_idosos::app::modules::hydration::hydration_store.dart::HydrationStore"
+"app_idosos::app::modules::hydration::hydration_store.dart::_$HydrationStore" <|-- "app_idosos::app::modules::hydration::hydration_store.dart::HydrationStore"
+
+abstract class "app_idosos::app::modules::hydration::hydration_store.dart::_HydrationStoreBase" {
+  +TextEditingController quantidadeLiquidoController
+  +Hydration hidratacao
+  +bool setValidator
+  +bool getValidator
+  +double meta
+  +double consumido
+  +double porcentagem
+  +String data
+  +dynamic getValueHydration()
+  +dynamic setNewValueHydration()
+  +String formatarData()
+}
+
+"app_idosos::app::modules::hydration::hydration_store.dart::_HydrationStoreBase" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"app_idosos::app::modules::hydration::hydration_store.dart::_HydrationStoreBase" o-- "app_idosos::db::models::hydration.dart::Hydration"
+"mobx::src::api::store.dart::Store" <|-- "app_idosos::app::modules::hydration::hydration_store.dart::_HydrationStoreBase"
+
+abstract class "app_idosos::app::modules::hydration::hydration_store.dart::_$HydrationStore" {
+  -Atom _$setValidatorAtom
+  -Atom _$getValidatorAtom
+  -Atom _$metaAtom
+  -Atom _$consumidoAtom
+  -Atom _$porcentagemAtom
+  -Atom _$dataAtom
+  -AsyncAction _$getValueHydrationAsyncAction
+  -AsyncAction _$setNewValueHydrationAsyncAction
+  -ActionController _$_HydrationStoreBaseActionController
+  +bool setValidator
+  +bool getValidator
+  +double meta
+  +double consumido
+  +double porcentagem
+  +String data
+  +dynamic getValueHydration()
+  +dynamic setNewValueHydration()
+  +String formatarData()
+  +String toString()
+}
+
+"app_idosos::app::modules::hydration::hydration_store.dart::_$HydrationStore" o-- "mobx::src::core.dart::Atom"
+"app_idosos::app::modules::hydration::hydration_store.dart::_$HydrationStore" o-- "mobx::src::api::async.dart::AsyncAction"
+"app_idosos::app::modules::hydration::hydration_store.dart::_$HydrationStore" o-- "mobx::src::core.dart::ActionController"
+
+class "app_idosos::app::modules::login::login_module.dart::LoginModule" {
+  +List<Bind<Object>> binds
+  +List<ModularRoute> routes
+}
+
+"flutter_modular::src::presenter::models::module.dart::Module" <|-- "app_idosos::app::modules::login::login_module.dart::LoginModule"
+
+class "app_idosos::app::modules::login::login_page.dart::LoginPage" {
+  +String title
+  +_LoginPageState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "app_idosos::app::modules::login::login_page.dart::LoginPage"
+
+class "app_idosos::app::modules::login::login_page.dart::_LoginPageState" {
+  +bool visibilityPass
+  +LoginStore store
+  +void initState()
+  +Widget build()
+}
+
+"app_idosos::app::modules::login::login_page.dart::_LoginPageState" o-- "app_idosos::app::modules::login::login_store.dart::LoginStore"
+"flutter::src::widgets::framework.dart::State" <|-- "app_idosos::app::modules::login::login_page.dart::_LoginPageState"
+
+class "app_idosos::app::modules::login::login_store.dart::LoginStore" {
+}
+
+"app_idosos::app::modules::login::login_store.dart::LoginStoreBase" <|-- "app_idosos::app::modules::login::login_store.dart::LoginStore"
+abstract class "app_idosos::app::modules::login::login_store.dart::LoginStoreBase" {
+  +ConexaoFirebaseLogin dblogin
+  +TextEditingController loginUserController
+  +TextEditingController loginPasswordController
+  +UserModel usuarioLogin
+  +bool resultLogin
+  +bool progressLogin
+  +dynamic RealizarLogin()
+  +dynamic esqueciSenha()
+  +bool validatePasswordField()
+  +dynamic checkCurrentUser()
+}
+
+"app_idosos::app::modules::login::login_store.dart::LoginStoreBase" o-- "app_idosos::app::repositories::db_login.dart::ConexaoFirebaseLogin"
+"app_idosos::app::modules::login::login_store.dart::LoginStoreBase" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"app_idosos::app::modules::login::login_store.dart::LoginStoreBase" o-- "app_idosos::app::models::user_model.dart::UserModel"
+"mobx::src::api::store.dart::Store" <|-- "app_idosos::app::modules::login::login_store.dart::LoginStoreBase"
+
+
+class "app_idosos::app::modules::medication::medication_module.dart::MedicationModule" {
+  +List<Bind<Object>> binds
+  +List<ModularRoute> routes
+}
+
+"flutter_modular::src::presenter::models::module.dart::Module" <|-- "app_idosos::app::modules::medication::medication_module.dart::MedicationModule"
+
+class "app_idosos::app::modules::medication::medication_page.dart::MedicationPage" {
+  +MedicationPageState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "app_idosos::app::modules::medication::medication_page.dart::MedicationPage"
+
+class "app_idosos::app::modules::medication::medication_page.dart::MedicationPageState" {
+  +MedicationStore store
+  +void initState()
+  +Widget build()
+}
+
+"app_idosos::app::modules::medication::medication_page.dart::MedicationPageState" o-- "app_idosos::app::modules::medication::medication_store.dart::MedicationStore"
+"flutter::src::widgets::framework.dart::State" <|-- "app_idosos::app::modules::medication::medication_page.dart::MedicationPageState"
+
+class "app_idosos::app::modules::medication::medication_store.dart::MedicationStore" {
+}
+
+"app_idosos::app::modules::medication::medication_store.dart::_MedicationStoreBase" <|-- "app_idosos::app::modules::medication::medication_store.dart::MedicationStore"
+"app_idosos::app::modules::medication::medication_store.dart::_$MedicationStore" <|-- "app_idosos::app::modules::medication::medication_store.dart::MedicationStore"
+
+abstract class "app_idosos::app::modules::medication::medication_store.dart::_MedicationStoreBase" {
+  +List<Medication> listMedicamentos
+  +bool getMedicamentosValidator
+  +MedicacaoStore medicacaoStore
+  +dynamic getListMedicamentos()
+  +dynamic createAlarm()
+  +dynamic deleteAlarms()
+  +dynamic createNotification()
+  +dynamic deleteNotifications()
+}
+
+"app_idosos::app::modules::medication::medication_store.dart::_MedicationStoreBase" o-- "app_idosos::db::stores::store_definition::medicacao_store.dart::MedicacaoStore"
+"mobx::src::api::store.dart::Store" <|-- "app_idosos::app::modules::medication::medication_store.dart::_MedicationStoreBase"
+
+abstract class "app_idosos::app::modules::medication::medication_store.dart::_$MedicationStore" {
+  -Atom _$listMedicamentosAtom
+  -Atom _$getMedicamentosValidatorAtom
+  -AsyncAction _$getListMedicamentosAsyncAction
+  -AsyncAction _$createAlarmAsyncAction
+  -AsyncAction _$deleteAlarmsAsyncAction
+  -AsyncAction _$createNotificationAsyncAction
+  -AsyncAction _$deleteNotificationsAsyncAction
+  +List<Medication> listMedicamentos
+  +bool getMedicamentosValidator
+  +dynamic getListMedicamentos()
+  +dynamic createAlarm()
+  +dynamic deleteAlarms()
+  +dynamic createNotification()
+  +dynamic deleteNotifications()
+  +String toString()
+}
+
+"app_idosos::app::modules::medication::medication_store.dart::_$MedicationStore" o-- "mobx::src::core.dart::Atom"
+"app_idosos::app::modules::medication::medication_store.dart::_$MedicationStore" o-- "mobx::src::api::async.dart::AsyncAction"
+
+class "app_idosos::app::modules::register::register_module.dart::RegisterModule" {
+  +List<Bind<Object>> binds
+  +List<ModularRoute> routes
+}
+
+"flutter_modular::src::presenter::models::module.dart::Module" <|-- "app_idosos::app::modules::register::register_module.dart::RegisterModule"
+
+class "app_idosos::app::modules::register::register_page.dart::RegisterPage" {
+  +String title
+  +RegisterPageState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "app_idosos::app::modules::register::register_page.dart::RegisterPage"
+
+class "app_idosos::app::modules::register::register_page.dart::RegisterPageState" {
+  +RegisterStore store
+  +bool visibilityPass
+  +TextEditingController senhaCtrl
+  +TextEditingController cpfCtrl
+  +Widget build()
+}
+
+"app_idosos::app::modules::register::register_page.dart::RegisterPageState" o-- "app_idosos::app::modules::register::register_store.dart::RegisterStore"
+"app_idosos::app::modules::register::register_page.dart::RegisterPageState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::State" <|-- "app_idosos::app::modules::register::register_page.dart::RegisterPageState"
+
+class "app_idosos::app::modules::register::register_store.dart::RegisterStore" {
+}
+
+"app_idosos::app::modules::register::register_store.dart::_RegisterStoreBase" <|-- "app_idosos::app::modules::register::register_store.dart::RegisterStore"
+"app_idosos::app::modules::register::register_store.dart::_$RegisterStore" <|-- "app_idosos::app::modules::register::register_store.dart::RegisterStore"
+
+abstract class "app_idosos::app::modules::register::register_store.dart::_RegisterStoreBase" {
+  +FirebaseAuth auth
+  +ConexaoFirebaseCadastro dbCadastro
+  -FirebaseStorage _firebaseStorage
+  +TextEditingController nomeController
+  +TextEditingController idadeController
+  +TextEditingController emailController
+  +TextEditingController senhaController
+  +String foto
+  +String photoController
+  +XFile? image
+  +bool uploading
+  +UserModel usuario
+  +bool resultUsuario
+  +String textResult
+  +bool resultCadastro
+  +dynamic CadastrarUser()
+  +dynamic getImage()
+  +dynamic upload()
+  +dynamic pickAndUploadImage()
+  +bool validateEmailField()
+  +bool validatePasswordField()
+  +bool validateNameField()
+  +bool validateMatriculaField()
+  +bool validateDataField()
+  +bool validateTelefoneField()
+}
+
+"app_idosos::app::modules::register::register_store.dart::_RegisterStoreBase" o-- "firebase_auth::firebase_auth.dart::FirebaseAuth"
+"app_idosos::app::modules::register::register_store.dart::_RegisterStoreBase" o-- "app_idosos::app::modules::register::repositories::db_registration.dart::ConexaoFirebaseCadastro"
+"app_idosos::app::modules::register::register_store.dart::_RegisterStoreBase" o-- "firebase_storage::firebase_storage.dart::FirebaseStorage"
+"app_idosos::app::modules::register::register_store.dart::_RegisterStoreBase" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"app_idosos::app::modules::register::register_store.dart::_RegisterStoreBase" o-- "cross_file::src::types::interface.dart::XFile"
+"app_idosos::app::modules::register::register_store.dart::_RegisterStoreBase" o-- "app_idosos::app::models::user_model.dart::UserModel"
+"mobx::src::api::store.dart::Store" <|-- "app_idosos::app::modules::register::register_store.dart::_RegisterStoreBase"
+
+abstract class "app_idosos::app::modules::register::register_store.dart::_$RegisterStore" {
+  -Atom _$photoControllerAtom
+  -Atom _$imageAtom
+  -Atom _$uploadingAtom
+  -Atom _$usuarioAtom
+  -Atom _$resultUsuarioAtom
+  -Atom _$textResultAtom
+  -Atom _$resultCadastroAtom
+  -AsyncAction _$CadastrarUserAsyncAction
+  -AsyncAction _$getImageAsyncAction
+  -AsyncAction _$uploadAsyncAction
+  -AsyncAction _$pickAndUploadImageAsyncAction
+  +String photoController
+  +XFile? image
+  +bool uploading
+  +UserModel usuario
+  +bool resultUsuario
+  +String textResult
+  +bool resultCadastro
+  +dynamic CadastrarUser()
+  +dynamic getImage()
+  +dynamic upload()
+  +dynamic pickAndUploadImage()
+  +String toString()
+}
+
+"app_idosos::app::modules::register::register_store.dart::_$RegisterStore" o-- "mobx::src::core.dart::Atom"
+"app_idosos::app::modules::register::register_store.dart::_$RegisterStore" o-- "mobx::src::api::async.dart::AsyncAction"
+"app_idosos::app::modules::register::register_store.dart::_$RegisterStore" o-- "cross_file::src::types::interface.dart::XFile"
+"app_idosos::app::modules::register::register_store.dart::_$RegisterStore" o-- "app_idosos::app::models::user_model.dart::UserModel"
+
+class "app_idosos::app::modules::register::repositories::db_registration.dart::ConexaoFirebaseCadastro" {
+  +FirebaseAuth auth
+  +FirebaseFirestore db
+  +dynamic CadastraUsuario()
+}
+
+"app_idosos::app::modules::register::repositories::db_registration.dart::ConexaoFirebaseCadastro" o-- "firebase_auth::firebase_auth.dart::FirebaseAuth"
+"app_idosos::app::modules::register::repositories::db_registration.dart::ConexaoFirebaseCadastro" o-- "cloud_firestore::cloud_firestore.dart::FirebaseFirestore"
+
+class "app_idosos::app::modules::user::user_module.dart::UserModule" {
+  +List<Bind<Object>> binds
+  +List<ModularRoute> routes
+}
+
+"flutter_modular::src::presenter::models::module.dart::Module" <|-- "app_idosos::app::modules::user::user_module.dart::UserModule"
+
+class "app_idosos::app::modules::user::user_page.dart::UserPage" {
+  +UserPageState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "app_idosos::app::modules::user::user_page.dart::UserPage"
+
+class "app_idosos::app::modules::user::user_page.dart::UserPageState" {
+  +UserStore store
+  +void initState()
+  +Widget build()
+}
+
+"app_idosos::app::modules::user::user_page.dart::UserPageState" o-- "app_idosos::app::modules::user::user_store.dart::UserStore"
+"flutter::src::widgets::framework.dart::State" <|-- "app_idosos::app::modules::user::user_page.dart::UserPageState"
+
+class "app_idosos::app::modules::user::user_store.dart::UserStore" {
+}
+
+"app_idosos::app::modules::user::user_store.dart::_UserStoreBase" <|-- "app_idosos::app::modules::user::user_store.dart::UserStore"
+"app_idosos::app::modules::user::user_store.dart::_$UserStore" <|-- "app_idosos::app::modules::user::user_store.dart::UserStore"
+
+abstract class "app_idosos::app::modules::user::user_store.dart::_UserStoreBase" {
+  -ConexaoFirebaseHome _dbHome
+  +TextEditingController nomeController
+  +TextEditingController idadeController
+  +TextEditingController emailController
+  +MaskedTextController telefoneEmergController
+  +UserModel currentUserModel
+  +bool getValidator
+  +dynamic getCurrentUser()
+  +dynamic updateCurrentUser()
+}
+
+"app_idosos::app::modules::user::user_store.dart::_UserStoreBase" o-- "app_idosos::app::repositories::db_home.dart::ConexaoFirebaseHome"
+"app_idosos::app::modules::user::user_store.dart::_UserStoreBase" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"app_idosos::app::modules::user::user_store.dart::_UserStoreBase" o-- "extended_masked_text::src::masked_text_controller.dart::MaskedTextController"
+"app_idosos::app::modules::user::user_store.dart::_UserStoreBase" o-- "app_idosos::app::models::user_model.dart::UserModel"
+"mobx::src::api::store.dart::Store" <|-- "app_idosos::app::modules::user::user_store.dart::_UserStoreBase"
+
+abstract class "app_idosos::app::modules::user::user_store.dart::_$UserStore" {
+  -Atom _$currentUserModelAtom
+  -Atom _$getValidatorAtom
+  -AsyncAction _$getCurrentUserAsyncAction
+  -AsyncAction _$updateCurrentUserAsyncAction
+  +UserModel currentUserModel
+  +bool getValidator
+  +dynamic getCurrentUser()
+  +dynamic updateCurrentUser()
+  +String toString()
+}
+
+"app_idosos::app::modules::user::user_store.dart::_$UserStore" o-- "mobx::src::core.dart::Atom"
+"app_idosos::app::modules::user::user_store.dart::_$UserStore" o-- "mobx::src::api::async.dart::AsyncAction"
+"app_idosos::app::modules::user::user_store.dart::_$UserStore" o-- "app_idosos::app::models::user_model.dart::UserModel"
+
+class "app_idosos::app::modules::warnings::warnings_module.dart::WarningsModule" {
+  +List<Bind<Object>> binds
+  +List<ModularRoute> routes
+}
+
+"flutter_modular::src::presenter::models::module.dart::Module" <|-- "app_idosos::app::modules::warnings::warnings_module.dart::WarningsModule"
+
+class "app_idosos::app::modules::warnings::warnings_page.dart::WarningsPage" {
+  +WarningsPageState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "app_idosos::app::modules::warnings::warnings_page.dart::WarningsPage"
+
+class "app_idosos::app::modules::warnings::warnings_page.dart::WarningsPageState" {
+  +WarningsStore store
+  +Widget build()
+}
+
+"app_idosos::app::modules::warnings::warnings_page.dart::WarningsPageState" o-- "app_idosos::app::modules::warnings::warnings_store.dart::WarningsStore"
+"flutter::src::widgets::framework.dart::State" <|-- "app_idosos::app::modules::warnings::warnings_page.dart::WarningsPageState"
+
+class "app_idosos::app::modules::warnings::warnings_store.dart::WarningsStore" {
+}
+
+"app_idosos::app::modules::warnings::warnings_store.dart::_WarningsStoreBase" <|-- "app_idosos::app::modules::warnings::warnings_store.dart::WarningsStore"
+"app_idosos::app::modules::warnings::warnings_store.dart::_$WarningsStore" <|-- "app_idosos::app::modules::warnings::warnings_store.dart::WarningsStore"
+
+abstract class "app_idosos::app::modules::warnings::warnings_store.dart::_WarningsStoreBase" {
+  +int value
+  +void increment()
+}
+
+"mobx::src::api::store.dart::Store" <|-- "app_idosos::app::modules::warnings::warnings_store.dart::_WarningsStoreBase"
+
+abstract class "app_idosos::app::modules::warnings::warnings_store.dart::_$WarningsStore" {
+  -Atom _$valueAtom
+  -ActionController _$_WarningsStoreBaseActionController
+  +int value
+  +void increment()
+  +String toString()
+}
+
+"app_idosos::app::modules::warnings::warnings_store.dart::_$WarningsStore" o-- "mobx::src::core.dart::Atom"
+"app_idosos::app::modules::warnings::warnings_store.dart::_$WarningsStore" o-- "mobx::src::core.dart::ActionController"
+
+class "app_idosos::app::modules::warnings::widgets::card_consciencia.dart::CardConsciencia" {
+  +_CardConscienciaState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "app_idosos::app::modules::warnings::widgets::card_consciencia.dart::CardConsciencia"
+
+class "app_idosos::app::modules::warnings::widgets::card_consciencia.dart::_CardConscienciaState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "app_idosos::app::modules::warnings::widgets::card_consciencia.dart::_CardConscienciaState"
+
+class "app_idosos::app::modules::warnings::widgets::card_desmaio.dart::CardDesmaio" {
+  +_CardDesmaioState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "app_idosos::app::modules::warnings::widgets::card_desmaio.dart::CardDesmaio"
+
+class "app_idosos::app::modules::warnings::widgets::card_desmaio.dart::_CardDesmaioState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "app_idosos::app::modules::warnings::widgets::card_desmaio.dart::_CardDesmaioState"
+
+class "app_idosos::app::modules::warnings::widgets::card_queda.dart::CardQueda" {
+  +_CardQuedaState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "app_idosos::app::modules::warnings::widgets::card_queda.dart::CardQueda"
+
+class "app_idosos::app::modules::warnings::widgets::card_queda.dart::_CardQuedaState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "app_idosos::app::modules::warnings::widgets::card_queda.dart::_CardQuedaState"
+
+class "app_idosos::app::modules::warnings::widgets::card_temperatura.dart::CardTemperatura" {
+  +_CardTemperaturaState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "app_idosos::app::modules::warnings::widgets::card_temperatura.dart::CardTemperatura"
+
+class "app_idosos::app::modules::warnings::widgets::card_temperatura.dart::_CardTemperaturaState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "app_idosos::app::modules::warnings::widgets::card_temperatura.dart::_CardTemperaturaState"
+
+class "app_idosos::app::repositories::db_home.dart::ConexaoFirebaseHome" {
+  +FirebaseAuth auth
+  -FirebaseFirestore _db
+  -UserModel _userm
+  +String emailCurrent
+  +bool checkCurrentUser()
+  +dynamic getCurrentUser()
+  +dynamic firebaseUpdateUser()
+  +dynamic logout()
+}
+
+"app_idosos::app::repositories::db_home.dart::ConexaoFirebaseHome" o-- "firebase_auth::firebase_auth.dart::FirebaseAuth"
+"app_idosos::app::repositories::db_home.dart::ConexaoFirebaseHome" o-- "cloud_firestore::cloud_firestore.dart::FirebaseFirestore"
+"app_idosos::app::repositories::db_home.dart::ConexaoFirebaseHome" o-- "app_idosos::app::models::user_model.dart::UserModel"
+
+class "app_idosos::app::repositories::db_login.dart::ConexaoFirebaseLogin" {
+  +FirebaseAuth auth
+  -FirebaseFirestore _db
+  +dynamic getUserData()
+  +dynamic logarUsuario()
+  +dynamic logout()
+}
+
+"app_idosos::app::repositories::db_login.dart::ConexaoFirebaseLogin" o-- "firebase_auth::firebase_auth.dart::FirebaseAuth"
+"app_idosos::app::repositories::db_login.dart::ConexaoFirebaseLogin" o-- "cloud_firestore::cloud_firestore.dart::FirebaseFirestore"
+
+class "app_idosos::app::widgets::adicionar_medicamento_dialog.dart::AdicionarMedicamentoDialog" {
+  +_AdicionarMedicamentoDialogState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "app_idosos::app::widgets::adicionar_medicamento_dialog.dart::AdicionarMedicamentoDialog"
+
+class "app_idosos::app::widgets::adicionar_medicamento_dialog.dart::_AdicionarMedicamentoDialogState" {
+  +MedicationStore store
+  -TextEditingController _nomeController
+  -TextEditingController _doseController
+  -MaskedTextController _horarioController
+  -List<String> _horarios
+  +Medication medicacao
+  +MedicacaoStore medicacaoStore
+  -bool _isValidTimeFormat()
+  +Widget build()
+}
+
+"app_idosos::app::widgets::adicionar_medicamento_dialog.dart::_AdicionarMedicamentoDialogState" o-- "app_idosos::app::modules::medication::medication_store.dart::MedicationStore"
+"app_idosos::app::widgets::adicionar_medicamento_dialog.dart::_AdicionarMedicamentoDialogState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"app_idosos::app::widgets::adicionar_medicamento_dialog.dart::_AdicionarMedicamentoDialogState" o-- "extended_masked_text::src::masked_text_controller.dart::MaskedTextController"
+"app_idosos::app::widgets::adicionar_medicamento_dialog.dart::_AdicionarMedicamentoDialogState" o-- "app_idosos::db::models::medication.dart::Medication"
+"app_idosos::app::widgets::adicionar_medicamento_dialog.dart::_AdicionarMedicamentoDialogState" o-- "app_idosos::db::stores::store_definition::medicacao_store.dart::MedicacaoStore"
+"flutter::src::widgets::framework.dart::State" <|-- "app_idosos::app::widgets::adicionar_medicamento_dialog.dart::_AdicionarMedicamentoDialogState"
+
+class "app_idosos::app::widgets::medicamento_item.dart::MedicamentoItem" {
+  +int id
+  +String nome
+  +String dose
+  +List<String> horarios
+  +MedicationStore store
+  +Widget build()
+}
+
+"app_idosos::app::widgets::medicamento_item.dart::MedicamentoItem" o-- "app_idosos::app::modules::medication::medication_store.dart::MedicationStore"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "app_idosos::app::widgets::medicamento_item.dart::MedicamentoItem"
+
+class "app_idosos::db::models::hydration.dart::Hydration" {
+  +int id
+  +String? data
+  +double? consumido
+  +double? meta
+  +bool? sincronizado
+}
+
+class "app_idosos::db::models::medication.dart::Medication" {
+  +int id
+  +String? nome
+  +String? dose
+  +List<String>? horarios
+  +bool? sincronizado
+  +List<int>? idsAlarmes
+}
+
+class "app_idosos::db::stores::store_definition::hidratacao_store.dart::HidratacaoStore" {
+  {static} -HidratacaoStore _singleton
+  +dynamic getStore()
+}
+
+"app_idosos::db::stores::store_definition::hidratacao_store.dart::HidratacaoStore" o-- "app_idosos::db::stores::store_definition::hidratacao_store.dart::HidratacaoStore"
+"app_idosos::db::stores::store_essentials::base_store.dart::BaseStore" <|-- "app_idosos::db::stores::store_definition::hidratacao_store.dart::HidratacaoStore"
+
+class "app_idosos::db::stores::store_definition::medicacao_store.dart::MedicacaoStore" {
+  {static} -MedicacaoStore _singleton
+  +dynamic getStore()
+}
+
+"app_idosos::db::stores::store_definition::medicacao_store.dart::MedicacaoStore" o-- "app_idosos::db::stores::store_definition::medicacao_store.dart::MedicacaoStore"
+"app_idosos::db::stores::store_essentials::base_store.dart::BaseStore" <|-- "app_idosos::db::stores::store_definition::medicacao_store.dart::MedicacaoStore"
+
+abstract class "app_idosos::db::stores::store_essentials::base_store.dart::BaseStore" {
+  +dynamic getStore()
+  +dynamic put()
+  +dynamic putAsync()
+  +dynamic putMany()
+  +dynamic get()
+  +dynamic getMany()
+  +dynamic getAll()
+  +dynamic remove()
+  +dynamic removeAll()
+  +dynamic findFirst()
+  +dynamic find()
+  +dynamic query()
+}
+
+class "app_idosos::db::stores::store_essentials::db_store.dart::DbStore" {
+  {static} -DbStore _singleton
+  {static} -Store? _store
+  +dynamic get()
+}
+
+"app_idosos::db::stores::store_essentials::db_store.dart::DbStore" o-- "app_idosos::db::stores::store_essentials::db_store.dart::DbStore"
+"app_idosos::db::stores::store_essentials::db_store.dart::DbStore" o-- "objectbox::src::native::store.dart::Store"
+
+class "app_idosos::firebase_options.dart::DefaultFirebaseOptions" {
+  {static} +FirebaseOptions android
+  {static} +FirebaseOptions ios
+  {static} +FirebaseOptions currentPlatform
+}
+
+"app_idosos::firebase_options.dart::DefaultFirebaseOptions" o-- "firebase_core_platform_interface::firebase_core_platform_interface.dart::FirebaseOptions"
+
+class "app_idosos::objectbox.g.dart::Hydration_" {
+  {static} +QueryIntegerProperty<Hydration> id
+  {static} +QueryStringProperty<Hydration> data
+  {static} +QueryDoubleProperty<Hydration> consumido
+  {static} +QueryDoubleProperty<Hydration> meta
+  {static} +QueryBooleanProperty<Hydration> sincronizado
+}
+
+"app_idosos::objectbox.g.dart::Hydration_" o-- "objectbox::src::native::query::query.dart::QueryIntegerProperty<Hydration>"
+"app_idosos::objectbox.g.dart::Hydration_" o-- "objectbox::src::native::query::query.dart::QueryStringProperty<Hydration>"
+"app_idosos::objectbox.g.dart::Hydration_" o-- "objectbox::src::native::query::query.dart::QueryDoubleProperty<Hydration>"
+"app_idosos::objectbox.g.dart::Hydration_" o-- "objectbox::src::native::query::query.dart::QueryBooleanProperty<Hydration>"
+
+class "app_idosos::objectbox.g.dart::Medication_" {
+  {static} +QueryIntegerProperty<Medication> id
+  {static} +QueryStringProperty<Medication> nome
+  {static} +QueryStringProperty<Medication> dose
+  {static} +QueryStringVectorProperty<Medication> horarios
+  {static} +QueryBooleanProperty<Medication> sincronizado
+  {static} +QueryIntegerVectorProperty<Medication> idsAlarmes
+}
+
+"app_idosos::objectbox.g.dart::Medication_" o-- "objectbox::src::native::query::query.dart::QueryIntegerProperty<Medication>"
+"app_idosos::objectbox.g.dart::Medication_" o-- "objectbox::src::native::query::query.dart::QueryStringProperty<Medication>"
+"app_idosos::objectbox.g.dart::Medication_" o-- "objectbox::src::native::query::query.dart::QueryStringVectorProperty<Medication>"
+"app_idosos::objectbox.g.dart::Medication_" o-- "objectbox::src::native::query::query.dart::QueryBooleanProperty<Medication>"
+"app_idosos::objectbox.g.dart::Medication_" o-- "objectbox::src::native::query::query.dart::QueryIntegerVectorProperty<Medication>"
+
+
+@enduml

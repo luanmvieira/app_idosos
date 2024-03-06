@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:app_idosos/app/modules/home/home_store.dart';
@@ -19,7 +20,7 @@ class HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    store.getCurrentUser();
+    //store.getCurrentUser();
   }
 
   @override
@@ -165,31 +166,36 @@ class HomePageState extends State<HomePage> {
                         Modular.to.pushNamed("/behaviors/");
                       },
                     ),
-                    Container(
-                      width: 65,
-                      height: 15,
-                      decoration: BoxDecoration(
-                        color: Colors.lightBlue,
-                        borderRadius: BorderRadius.circular(
-                            10.0), // Adiciona bordas curvas
-                      ),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(top: 10.0, bottom: 10),
-                            child: Image.asset(
-                              "assets/images/alerta.png",
-                              height: 120,
-                              width: 120,
+                    GestureDetector(
+                      child: Container(
+                        width: 65,
+                        height: 15,
+                        decoration: BoxDecoration(
+                          color: Colors.lightBlue,
+                          borderRadius: BorderRadius.circular(
+                              10.0), // Adiciona bordas curvas
+                        ),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 10.0, bottom: 10),
+                              child: Image.asset(
+                                "assets/images/alerta.png",
+                                height: 120,
+                                width: 120,
+                              ),
                             ),
-                          ),
-                          Text(
-                            'Sinais de Alerta',
-                            style: TextStyle(color: Colors.white, fontSize: 13),
-                          ),
-                        ],
+                            Text(
+                              'Sinais de Alerta',
+                              style: TextStyle(color: Colors.white, fontSize: 13),
+                            ),
+                          ],
+                        ),
                       ),
+                      onTap: () {
+                        Modular.to.pushNamed("/warnings/");
+                      },
                     ),
                     GestureDetector(
                       child: Container(
@@ -222,31 +228,36 @@ class HomePageState extends State<HomePage> {
                         Modular.to.pushNamed("/hydration/");
                       },
                     ),
-                    Container(
-                      width: 65,
-                      height: 15,
-                      decoration: BoxDecoration(
-                        color: Colors.lightBlue,
-                        borderRadius: BorderRadius.circular(
-                            10.0), // Adiciona bordas curvas
-                      ),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(top: 10.0, bottom: 10),
-                            child: Image.asset(
-                              "assets/images/telefone.png",
-                              height: 120,
-                              width: 120,
+                    GestureDetector(
+                      child: Container(
+                        width: 65,
+                        height: 15,
+                        decoration: BoxDecoration(
+                          color: Colors.lightBlue,
+                          borderRadius: BorderRadius.circular(
+                              10.0), // Adiciona bordas curvas
+                        ),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 10.0, bottom: 10),
+                              child: Image.asset(
+                                "assets/images/telefone.png",
+                                height: 120,
+                                width: 120,
+                              ),
                             ),
-                          ),
-                          Text(
-                            'Telefones Úteis',
-                            style: TextStyle(color: Colors.white, fontSize: 13.5),
-                          ),
-                        ],
+                            Text(
+                              'Telefones Úteis',
+                              style: TextStyle(color: Colors.white, fontSize: 13.5),
+                            ),
+                          ],
+                        ),
                       ),
+                      onTap: (){
+                        Modular.to.pushNamed("/phones/");
+                      },
                     ),
                   ],
                 ),

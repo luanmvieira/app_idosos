@@ -1,0 +1,145 @@
+import 'dart:math';
+
+
+import 'package:app_idosos/app/modules/medication/medication_store.dart';
+import 'package:app_idosos/db/models/medication.dart';
+import 'package:app_idosos/db/stores/store_definition/medicacao_store.dart';
+import 'package:extended_masked_text/extended_masked_text.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+class EditarMedicamentoDialog extends StatefulWidget {
+
+  Medication medication;
+
+
+  EditarMedicamentoDialog({required this.medication});
+
+  @override
+  _EditarMedicamentoDialogState createState() =>
+      _EditarMedicamentoDialogState();
+}
+
+
+
+class _EditarMedicamentoDialogState extends State<EditarMedicamentoDialog> {
+
+
+
+  final MedicationStore store = Modular.get();
+  final TextEditingController _nomeController = TextEditingController();
+  final TextEditingController _doseController = TextEditingController();
+  final _horarioController =  MaskedTextController(mask: '00:00');
+  late List<String> _horarios = [];
+
+  MedicacaoStore medicacaoStore = MedicacaoStore();
+
+  @override
+  void initState() {
+    super.initState();
+    _nomeController.text = widget.medication.nome!;
+    _doseController.text = widget.medication.dose!;
+    _horarios = widget.medication.horarios!;
+  }
+
+  bool _isValidTimeFormat(String time) {
+    final RegExp regex = RegExp(r'^([01]?[0-9]|2[0-3]):[0-5][0-9]$');
+    return regex.hasMatch(time);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Text('Adicionar Medicamento'),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          TextField(
+            controller: _nomeController,
+            decoration: InputDecoration(labelText: 'Nome do Medicamento'),
+          ),
+          TextField(
+            controller: _doseController,
+            decoration: InputDecoration(labelText: 'Dose'),
+          ),
+          SizedBox(height: 10),
+          Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  decoration: InputDecoration(labelText: 'Horário (HH:mm)'),
+                  controller: _horarioController,
+                  keyboardType: TextInputType.number,
+                ),
+              ),
+              IconButton(
+                icon: Icon(Icons.add),
+                onPressed: () {
+                  if (_isValidTimeFormat(_horarioController.text)) {
+                    setState(() {
+                      _horarios.add(_horarioController.text);
+                      _horarioController.clear();
+                    });
+                  }else{
+                    Fluttertoast.showToast(
+                        msg: "Adicione um horário Válido!",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.BOTTOM,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.red,
+                        textColor: Colors.white,
+                        fontSize: 12.0
+                    );
+                  }
+                },
+              ),
+
+            ],
+
+          ),
+          SizedBox(height: 10),
+          Text('Horários:'),
+          Column(
+            children: _horarios
+                .map(
+                  (horario) => Text(horario),
+            )
+                .toList(),
+          ),
+        ],
+      ),
+      actions: <Widget>[
+        TextButton(
+          child: Text('Cancelar'),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+        ElevatedButton(
+          child: Text('Adicionar'),
+          onPressed: () async {
+            Random random = Random();
+            int randomid = random.nextInt(999999);
+            List<int> idAlarmes = [];
+            widget.medication.nome = _nomeController.text;
+            widget.medication.dose = _doseController.text;
+            widget.medication.horarios = _horarios;
+            widget.medication.sincronizado = false;
+            for (var alarm in _horarios) {
+              await store.createNotification(randomid,alarm, _nomeController.text, _doseController.text);
+              idAlarmes.add(randomid);
+            }
+            widget.medication.idsAlarmes = idAlarmes;
+            await medicacaoStore.put(widget.medication);
+            Modular.to.pop();
+            await store.getListMedicamentos();
+
+
+          },
+        ),
+      ],
+    );
+  }
+}
+

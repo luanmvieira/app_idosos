@@ -29,7 +29,7 @@ class BehaviorsPageState extends State<BehaviorsPage> {
   @override
   Widget build(BuildContext context) {
     return Observer(
-      builder: (_) => store.getValidator
+      builder: (_) => !store.getValidator
           ? Container(
               color: Colors.white,
               alignment: Alignment.center,
@@ -321,7 +321,8 @@ class BehaviorsPageState extends State<BehaviorsPage> {
                     ),
                   ],
                 ),
-              )),
+              )
+      ),
     );
   }
 }

@@ -105,24 +105,12 @@ class HydrationPageState extends State<HydrationPage> {
                       child: Observer(
                         builder: (_) => LiquidCircularProgressIndicator(
                           value: store.porcentagem / 100,
-                          // Defaults to 0.5.
                           valueColor: AlwaysStoppedAnimation(
                               Colors.blueAccent.shade100),
-                          // Defaults to the current Theme's accentColor.
                           backgroundColor: Colors.white,
-                          // Defaults to the current Theme's backgroundColor.
                           borderColor: Colors.blueAccent,
                           borderWidth: 5.0,
                           direction: Axis.vertical,
-                          // The direction the liquid moves (Axis.vertical = bottom to top, Axis.horizontal = left to right). Defaults to Axis.vertical.
-                          center: Observer(
-                            builder: (_) => Text(
-                              "${store.porcentagem.toInt()}%",
-                              style: TextStyle(
-                                fontSize: 25,
-                              ),
-                            ),
-                          ),
                         ),
                       ),
                     ),
@@ -130,40 +118,18 @@ class HydrationPageState extends State<HydrationPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Column(
-                          children: [
-                            Observer(
-                              builder: (_) => Text(
-                                store.meta > 1000
-                                    ? "${store.meta/1000} Litros"
-                                    : "${store.meta} ml",
-                                style: TextStyle(fontSize: 19),
-                              ),
-                            ),
-                            Text("Meta diária "),
-                          ],
-                        ),
-                        SizedBox(width: 20),
-                        Container(
-                          height: 35,
-                          child: VerticalDivider(
-                            width: 3,
-                            thickness: 2,
-                            color: Colors.black, // Cor da linha
-                          ),
-                        ),
                         SizedBox(width: 20),
                         Column(
                           children: [
                             Observer(
                               builder: (_) => Text(
-                                store.consumido > 1000
+                                store.consumido > 999
                                     ? "${store.consumido/1000} Litros"
                                     : "${store.consumido} ml",
                                 style: TextStyle(fontSize: 19),
                               ),
                             ),
-                            Text("Consumido"),
+                            Text("Quantidade Ingerida"),
                           ],
                         ),
                       ],

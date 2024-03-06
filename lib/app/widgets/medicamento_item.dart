@@ -1,4 +1,7 @@
 import 'package:app_idosos/app/modules/medication/medication_store.dart';
+import 'package:app_idosos/app/widgets/editar_medicamento_dialog.dart';
+import 'package:app_idosos/db/stores/store_definition/medicacao_store.dart';
+import 'package:app_idosos/objectbox.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -17,72 +20,113 @@ class MedicamentoItem extends StatelessWidget {
   });
 
   final MedicationStore store = Modular.get();
+  MedicacaoStore medicacaoStore = MedicacaoStore();
 
   @override
   Widget build(BuildContext context) {
-    return Dismissible(
-      key: Key(nome),
-      onDismissed: (direction) async {
-        // Ação quando o item é deslizado
-        if (direction == DismissDirection.endToStart) {
+    return GestureDetector(
+      onLongPress: (){
+        showDialog(
+            context: context,
+            builder: (BuildContext context){
+              return AlertDialog(
+                content: SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.20,
+                  width: MediaQuery.of(context).size.width * 0.85,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      const Center(
+                        child: Text(
+                          "Qual ação deseja realizar?",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.normal,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Padding(
+                          padding: const EdgeInsets.all(1.0),
+                          child: TextButton(
+                            child: Text("Excluir medicação"),
+                            onPressed: () async {
+                              bool deleted = await store.deleteNotifications(id);
+                              if(deleted){
+                                Fluttertoast.showToast(
+                                    msg: "Medicação removida com sucesso!",
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.BOTTOM,
+                                    timeInSecForIosWeb: 1,
+                                    backgroundColor: Colors.green,
+                                    textColor: Colors.white,
+                                    fontSize: 12.0
+                                );
+                                await store.getListMedicamentos();
+                              }else{
+                                Fluttertoast.showToast(
+                                    msg: "Medicação não removida, tente novamente",
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.BOTTOM,
+                                    timeInSecForIosWeb: 1,
+                                    backgroundColor: Colors.red,
+                                    textColor: Colors.white,
+                                    fontSize: 12.0
+                                );
+                                await store.getListMedicamentos();
+                              }
 
-        } else if (direction == DismissDirection.startToEnd) {
-         bool deleted = await store.deleteNotifications(id);
-         if(deleted){
-           Fluttertoast.showToast(
-               msg: "Medicação removida com sucesso!",
-               toastLength: Toast.LENGTH_SHORT,
-               gravity: ToastGravity.BOTTOM,
-               timeInSecForIosWeb: 1,
-               backgroundColor: Colors.green,
-               textColor: Colors.white,
-               fontSize: 12.0
-           );
-           await store.getListMedicamentos();
-         }else{
-           Fluttertoast.showToast(
-               msg: "Medicação não removida, tente novamente",
-               toastLength: Toast.LENGTH_SHORT,
-               gravity: ToastGravity.BOTTOM,
-               timeInSecForIosWeb: 1,
-               backgroundColor: Colors.red,
-               textColor: Colors.white,
-               fontSize: 12.0
-           );
-           await store.getListMedicamentos();
-         }
+                            },
+                          ),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Padding(
+                          padding: const EdgeInsets.all(1.0),
+                          child: TextButton(
+                            child: Text("Editar Medicação"),
+                            onPressed: () async {
+                              await store.getListMedicamentos();
+                              var medication = await medicacaoStore.findFirst(Medication_.id.equals(id));
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return EditarMedicamentoDialog(medication: medication!);
+                                  });
 
-        }
+                            },
+                          ),
+                        ),
+                      ),
+
+                    ],
+                  ),
+                ),
+              );
+            }
+        );
       },
-      background: Container(
-        color: Colors.red, // Cor de fundo para excluir
-        alignment: Alignment.centerLeft,
-        padding: EdgeInsets.only(left: 16.0),
-        child: Icon(Icons.delete, color: Colors.white),
-      ),
-      secondaryBackground: Container(
-        color: Colors.blue, // Cor de fundo para editar
-        alignment: Alignment.centerRight,
-        padding: EdgeInsets.only(right: 16.0),
-        child: Icon(Icons.edit, color: Colors.white),
-      ),
       child: Card(
-        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
         child: ListTile(
           contentPadding: EdgeInsets.all(15),
           title: Text(
             nome,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           subtitle: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 'Dose: $dose',
-                style: TextStyle(fontSize: 16),
+                style: const TextStyle(fontSize: 16),
               ),
-              SizedBox(height: 5),
-              Text(
+              const SizedBox(height: 5),
+              const Text(
                 'Horários:',
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
@@ -90,7 +134,7 @@ class MedicamentoItem extends StatelessWidget {
                 children: horarios.map((horario) {
                   return Text(
                     horario,
-                    style: TextStyle(fontSize: 16),
+                    style: const TextStyle(fontSize: 16),
                   );
                 }).toList(),
               ),
@@ -99,5 +143,6 @@ class MedicamentoItem extends StatelessWidget {
         ),
       ),
     );
+
   }
 }

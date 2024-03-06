@@ -1,8 +1,6 @@
 import 'package:app_idosos/db/models/medication.dart';
 import 'package:app_idosos/db/stores/store_definition/medicacao_store.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:flutter_alarm_background_trigger/flutter_alarm_background_trigger.dart';
-import 'package:flutter_alarm_clock/flutter_alarm_clock.dart';
 import 'package:mobx/mobx.dart';
 import 'package:periodic_alarm/model/alarms_model.dart';
 import 'package:periodic_alarm/periodic_alarm.dart';
