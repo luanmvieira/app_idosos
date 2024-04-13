@@ -1,3 +1,4 @@
+import 'package:app_idosos/app/modules/home/widgets/card_disclaimer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -19,7 +20,17 @@ class HomePageState extends State<HomePage> {
 
   @override
   void initState() {
+
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      showDialog(
+          context: context,
+          builder: (BuildContext context){
+            return CardDisclaimer();
+          }
+      );
+    });
+
     //store.getCurrentUser();
   }
 
@@ -39,31 +50,11 @@ class HomePageState extends State<HomePage> {
       )
           : Scaffold(
               appBar: AppBar(
-                actions: [
-                  IconButton(
-                    icon: Icon(Icons.exit_to_app), // Ícone que será exibido
-                    onPressed: () async {
-                      await store.logOut();
-                    },
-                  ),
-                ],
                 backgroundColor: Colors.blueAccent,
                 elevation: 0,
-                title: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      store.nameHomeController,
-                      style: TextStyle(fontSize: 13),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      "${store.idadeHomeController} anos",
-                      style: TextStyle(fontSize: 12),
-                    ),
-                  ],
+                title: const Text(
+                  " ",
+                  style: TextStyle(fontSize: 13),
                 ),
               ),
               body: Padding(
@@ -88,43 +79,12 @@ class HomePageState extends State<HomePage> {
                               padding:
                                   const EdgeInsets.only(top: 10.0, bottom: 10),
                               child: Image.asset(
-                                "assets/images/dados.png",
-                                height: 120,
-                                width: 120,
-                              ),
-                            ),
-                            Text(
-                              'Dados do Idoso',
-                              style: TextStyle(color: Colors.white, fontSize: 13.5),
-                            ),
-                          ],
-                        ),
-                      ),
-                      onTap: () {
-                        Modular.to.pushNamed("/user/");
-                      },
-                    ),
-                    GestureDetector(
-                      child: Container(
-                        width: 65,
-                        height: 15,
-                        decoration: BoxDecoration(
-                          color: Colors.lightBlue,
-                          borderRadius: BorderRadius.circular(
-                              10.0), // Adiciona bordas curvas
-                        ),
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 10.0, bottom: 10),
-                              child: Image.asset(
                                 "assets/images/medicacao.png",
                                 height: 120,
                                 width: 120,
                               ),
                             ),
-                            Text(
+                            const Text(
                               'Medicação',
                               style: TextStyle(color: Colors.white, fontSize: 13.5),
                             ),
@@ -257,6 +217,37 @@ class HomePageState extends State<HomePage> {
                       ),
                       onTap: (){
                         Modular.to.pushNamed("/phones/");
+                      },
+                    ),
+                    GestureDetector(
+                      child: Container(
+                        width: 65,
+                        height: 15,
+                        decoration: BoxDecoration(
+                          color: Colors.lightBlue,
+                          borderRadius: BorderRadius.circular(
+                              10.0), // Adiciona bordas curvas
+                        ),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding:
+                              const EdgeInsets.only(top: 10.0, bottom: 10),
+                              child: Image.asset(
+                                "assets/images/configuracoes.png",
+                                height: 120,
+                                width: 120,
+                              ),
+                            ),
+                            Text(
+                              'Configurações',
+                              style: TextStyle(color: Colors.white, fontSize: 13.5),
+                            ),
+                          ],
+                        ),
+                      ),
+                      onTap: (){
+                        Modular.to.pushNamed("/settings/");
                       },
                     ),
                   ],

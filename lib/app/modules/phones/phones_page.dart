@@ -2,7 +2,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:app_idosos/app/modules/phones/phones_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
-import 'package:url_launcher/url_launcher.dart';
+
 
 class PhonesPage extends StatefulWidget {
 
@@ -19,12 +19,15 @@ class PhonesPageState extends State<PhonesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Telefones Úteis",style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold), ),
+        title: const Text("Telefones Úteis",
+          style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold), ),
         backgroundColor: Colors.blueAccent,
       ),
       body: Column(
         children: <Widget>[
-          SizedBox(height: 10,),
+          const SizedBox(height: 10,),
           Card(
             child: ListTile(
               leading: Image.asset(

@@ -1,5 +1,5 @@
 import 'package:app_idosos/db/models/medication.dart';
-import 'package:app_idosos/db/stores/store_definition/medicacao_store.dart';
+import 'package:app_idosos/db/stores/store_definition/medicacao_db.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:mobx/mobx.dart';
 import 'package:periodic_alarm/model/alarms_model.dart';
@@ -15,7 +15,7 @@ abstract class _MedicationStoreBase with Store {
   @observable
   bool getMedicamentosValidator = false;
 
-  MedicacaoStore medicacaoStore = MedicacaoStore();
+  MedicacaoDb medicacaoStore = MedicacaoDb();
 
   @action
   Future<void> getListMedicamentos () async {
@@ -105,12 +105,12 @@ abstract class _MedicationStoreBase with Store {
 
   @action
   Future <bool> deleteNotifications(int id) async{
-    var medicacao = await MedicacaoStore().get(id);
+    var medicacao = await MedicacaoDb().get(id);
     var listaAlarmes = medicacao!.idsAlarmes;
     for(var alarmId in listaAlarmes!){
       await AwesomeNotifications().cancelSchedule(alarmId);
     }
-    return await MedicacaoStore().remove(id);
+    return await MedicacaoDb().remove(id);
 
   }
 

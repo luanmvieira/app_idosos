@@ -3,7 +3,7 @@ import 'dart:math';
 
 import 'package:app_idosos/app/modules/medication/medication_store.dart';
 import 'package:app_idosos/db/models/medication.dart';
-import 'package:app_idosos/db/stores/store_definition/medicacao_store.dart';
+import 'package:app_idosos/db/stores/store_definition/medicacao_db.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -27,7 +27,7 @@ class _AdicionarMedicamentoDialogState extends State<AdicionarMedicamentoDialog>
   final List<String> _horarios = [];
 
   Medication medicacao = Medication();
-  MedicacaoStore medicacaoStore = MedicacaoStore();
+  MedicacaoDb medicacaoStore = MedicacaoDb();
 
   bool _isValidTimeFormat(String time) {
     final RegExp regex = RegExp(r'^([01]?[0-9]|2[0-3]):[0-5][0-9]$');

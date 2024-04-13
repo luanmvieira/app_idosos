@@ -3,7 +3,6 @@ import 'package:app_idosos/app/widgets/adicionar_medicamento_dialog.dart';
 import 'package:app_idosos/app/widgets/medicamento_item.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:app_idosos/app/modules/home/home_store.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter/material.dart';
 
@@ -51,7 +50,13 @@ class MedicationPageState extends State<MedicationPage> {
               appBar: AppBar(
                   backgroundColor: Colors.blueAccent,
                   elevation: 0,
-                  title: Text("Medicação")),
+                  title: Text(
+                      "Medicação",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white
+                    ),)
+              ),
               body: ListView.builder(
                 itemCount: store.listMedicamentos.length,
                 itemBuilder: (context, index) {

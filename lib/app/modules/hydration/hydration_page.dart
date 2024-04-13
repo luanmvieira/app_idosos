@@ -73,7 +73,13 @@ class HydrationPageState extends State<HydrationPage> {
       appBar: AppBar(
         backgroundColor: Colors.blueAccent,
         elevation: 0,
-        title: Text("Ingestão de Liquidos"),
+        title: const Text(
+            "Ingestão de Liquidos",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.white
+            ),
+        ),
       ),
       body: Observer(
         builder: (_) => store.getValidator || store.setValidator
@@ -129,7 +135,7 @@ class HydrationPageState extends State<HydrationPage> {
                                 style: TextStyle(fontSize: 19),
                               ),
                             ),
-                            Text("Quantidade Ingerida"),
+                            Text("Quantidade Ingerida*"),
                           ],
                         ),
                       ],
@@ -426,6 +432,18 @@ class HydrationPageState extends State<HydrationPage> {
                             ),
                           ],
                         ),
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(top: 90),
+                      child: Text(
+                          "*Os líquidos também podem ser ingeridos em forma de frutas, sucos, leite, sopa, etc.",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14
+                          ),
+                          textAlign:TextAlign.center,
+
                       ),
                     ),
                   ],

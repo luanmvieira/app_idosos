@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:app_idosos/app/modules/medication/medication_store.dart';
-import 'package:app_idosos/db/stores/store_definition/medicacao_store.dart';
+import 'package:app_idosos/db/stores/store_definition/medicacao_db.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:cron/cron.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +46,7 @@ configureSelectNotificationSubject() {
 
 Future<void> remarcarNotificacoes() async{
   List<int> ids = [];
-  var medicacoes = await MedicacaoStore().getAll();
+  var medicacoes = await MedicacaoDb().getAll();
   if(medicacoes != null) {
     MedicationStore store = MedicationStore();
     for(var medicacao in medicacoes){
@@ -57,7 +57,7 @@ Future<void> remarcarNotificacoes() async{
         ids.add(randomid);
       }
       medicacao.idsAlarmes = ids;
-      await MedicacaoStore().put(medicacao);
+      await MedicacaoDb().put(medicacao);
     }
   }
 }

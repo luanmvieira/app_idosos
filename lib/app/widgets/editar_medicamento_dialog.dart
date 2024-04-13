@@ -3,7 +3,7 @@ import 'dart:math';
 
 import 'package:app_idosos/app/modules/medication/medication_store.dart';
 import 'package:app_idosos/db/models/medication.dart';
-import 'package:app_idosos/db/stores/store_definition/medicacao_store.dart';
+import 'package:app_idosos/db/stores/store_definition/medicacao_db.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -33,7 +33,7 @@ class _EditarMedicamentoDialogState extends State<EditarMedicamentoDialog> {
   final _horarioController =  MaskedTextController(mask: '00:00');
   late List<String> _horarios = [];
 
-  MedicacaoStore medicacaoStore = MedicacaoStore();
+  MedicacaoDb medicacaoStore = MedicacaoDb();
 
   @override
   void initState() {

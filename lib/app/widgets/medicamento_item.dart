@@ -1,6 +1,6 @@
 import 'package:app_idosos/app/modules/medication/medication_store.dart';
 import 'package:app_idosos/app/widgets/editar_medicamento_dialog.dart';
-import 'package:app_idosos/db/stores/store_definition/medicacao_store.dart';
+import 'package:app_idosos/db/stores/store_definition/medicacao_db.dart';
 import 'package:app_idosos/objectbox.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -20,7 +20,7 @@ class MedicamentoItem extends StatelessWidget {
   });
 
   final MedicationStore store = Modular.get();
-  MedicacaoStore medicacaoStore = MedicacaoStore();
+  MedicacaoDb medicacaoStore = MedicacaoDb();
 
   @override
   Widget build(BuildContext context) {

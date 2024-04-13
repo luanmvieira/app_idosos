@@ -1,6 +1,6 @@
 import 'package:app_idosos/db/models/hydration.dart';
 
-import 'package:app_idosos/db/stores/store_definition/hidratacao_store.dart';
+import 'package:app_idosos/db/stores/store_definition/hidratacao_db.dart';
 
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
@@ -31,14 +31,14 @@ abstract class _HydrationStoreBase with Store {
   getValueHydration() async {
     getValidator = true;
     String date = "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}";
-    List<Hydration> listDados = await HidratacaoStore().getAll();
+    List<Hydration> listDados = await HidratacaoDb().getAll();
     var dados = listDados.firstWhere((element) => element.data == date, orElse: () => Hydration(data: "", consumido: 0.0, meta: 0.0, sincronizado: false) );
     if(dados.data == ""){
       hidratacao.data = date;
       hidratacao.consumido = 0.0;
       hidratacao.meta = 2000;
       hidratacao.sincronizado = false;
-      await HidratacaoStore().put(hidratacao);
+      await HidratacaoDb().put(hidratacao);
       data = formatarData(date);
       if(hidratacao.consumido == 0){
         porcentagem = 0 ;
@@ -66,17 +66,17 @@ abstract class _HydrationStoreBase with Store {
   setNewValueHydration(double quantidade) async {
     setValidator = true;
     String date = "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}";
-    List<Hydration> listDados = await HidratacaoStore().getAll();
+    List<Hydration> listDados = await HidratacaoDb().getAll();
     var dados = listDados.firstWhere((element) => element.data == date, orElse: () => Hydration(data: "", consumido: 0.0, meta: 0.0, sincronizado: false) );
     if(dados.data == ""){
       hidratacao.data = date;
       hidratacao.consumido = quantidade;
       hidratacao.meta = 2000;
       hidratacao.sincronizado = false;
-      await HidratacaoStore().put(hidratacao);
+      await HidratacaoDb().put(hidratacao);
     }else{
       dados.consumido = quantidade + dados.consumido!;
-      await HidratacaoStore().put(dados);
+      await HidratacaoDb().put(dados);
     }
 
 
