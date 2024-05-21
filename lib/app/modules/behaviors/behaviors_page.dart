@@ -23,25 +23,19 @@ class BehaviorsPageState extends State<BehaviorsPage> {
   @override
   void initState() {
     super.initState();
-    store.getCurrentUser();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Observer(
-      builder: (_) => !store.getValidator
-          ? Container(
-              color: Colors.white,
-              alignment: Alignment.center,
-              margin: const EdgeInsets.only(top: 20),
-              child: Lottie.asset("assets/animations/loading_animation.json",
-                  height: 300, width: 300),
-            )
-          : Scaffold(
+    return Scaffold(
               appBar: AppBar(
+                iconTheme: IconThemeData(color: Colors.white,size: 30),
                 backgroundColor: Colors.blueAccent,
                 elevation: 0,
-                title: Text("Alterações Comportamentais"),
+                title: Text("Alterações Comportamentais",style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),),
+
               ),
               body: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -322,7 +316,7 @@ class BehaviorsPageState extends State<BehaviorsPage> {
                   ],
                 ),
               )
-      ),
-    );
+      );
+
   }
 }

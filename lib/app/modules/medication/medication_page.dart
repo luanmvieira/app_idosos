@@ -36,8 +36,9 @@ class MedicationPageState extends State<MedicationPage> {
               floatingActionButton: Align(
                 alignment: Alignment.bottomRight,
                 child: FloatingActionButton(
+                  backgroundColor: Colors.blueAccent,
                   elevation: 10,
-                  child: Icon(Icons.add, color: Colors.white),
+                  child: const Icon(Icons.add, color: Colors.white),
                   onPressed: () async {
                     showDialog(
                         context: context,
@@ -48,24 +49,60 @@ class MedicationPageState extends State<MedicationPage> {
                 ),
               ),
               appBar: AppBar(
-                  backgroundColor: Colors.blueAccent,
-                  elevation: 0,
-                  title: Text(
-                      "Medicação",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white
-                    ),)
+                iconTheme: const IconThemeData(color: Colors.white,size: 30),
+                backgroundColor: Colors.blueAccent,
+                elevation: 0,
+                title: const Text(
+                  "Medicamentos",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.white),
+                ),
               ),
-              body: ListView.builder(
-                itemCount: store.listMedicamentos.length,
-                itemBuilder: (context, index) {
-                  return MedicamentoItem(
-                      id: store.listMedicamentos[index].id,
-                      nome: store.listMedicamentos[index].nome!,
-                      dose: store.listMedicamentos[index].dose!,
-                      horarios: store.listMedicamentos[index].horarios!);
-                },
+              body: Column(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(top:8.0),
+                    child: Text(
+                      "Atenção!",
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 7,),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        "Para adicionar um novo medicamento clique no icone + no fim da tela.",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black87,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 13,),
+                  // Expanded faz o ListView ocupar o espaço restante
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: store.listMedicamentos.length,
+                      itemBuilder: (context, index) {
+                        return MedicamentoItem(
+                          id: store.listMedicamentos[index].id,
+                          nome: store.listMedicamentos[index].nome!,
+                          dose: store.listMedicamentos[index].dose!,
+                          horarios: store.listMedicamentos[index].horarios!,
+                        );
+                      },
+                    ),
+                  ),
+                ],
               ),
             ),
     );

@@ -1,4 +1,5 @@
 import 'package:app_idosos/app/modules/hydration/hydration_store.dart';
+import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -26,6 +27,7 @@ class HydrationPageState extends State<HydrationPage> {
   bool isSelected8 = false;
   bool isSelected9 = false;
   bool isSelected10 = false;
+  List<DateTime?> _dates = [];
 
   @override
   void initState() {
@@ -71,6 +73,7 @@ class HydrationPageState extends State<HydrationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white,size: 30),
         backgroundColor: Colors.blueAccent,
         elevation: 0,
         title: const Text(

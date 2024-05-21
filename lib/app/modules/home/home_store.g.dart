@@ -89,22 +89,6 @@ mixin _$HomeStore on _HomeStoreBase, Store {
     });
   }
 
-  late final _$getCurrentUserAsyncAction =
-      AsyncAction('_HomeStoreBase.getCurrentUser', context: context);
-
-  @override
-  Future<void> getCurrentUser() {
-    return _$getCurrentUserAsyncAction.run(() => super.getCurrentUser());
-  }
-
-  late final _$logOutAsyncAction =
-      AsyncAction('_HomeStoreBase.logOut', context: context);
-
-  @override
-  Future<dynamic> logOut() {
-    return _$logOutAsyncAction.run(() => super.logOut());
-  }
-
   @override
   String toString() {
     return '''

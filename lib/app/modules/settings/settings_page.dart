@@ -1,3 +1,4 @@
+import 'package:app_idosos/app/modules/settings/widgets/card_add_numero_emergencia.dart';
 import 'package:app_idosos/app/modules/settings/widgets/custom_card_settings_dropDown.dart';
 import 'package:app_idosos/app/modules/settings/widgets/custom_card_settings_switch.dart';
 import 'package:app_idosos/app/modules/settings/widgets/custom_card_settings_telefone_emergencia.dart';
@@ -15,13 +16,18 @@ class SettingsPage extends StatefulWidget {
 class SettingsPageState extends State<SettingsPage> {
   final SettingsStore store = Modular.get();
 
-  bool switchAlarm = false;
+  bool switchAlarmMedication = false;
+  bool switchAlarmMiccao = false;
+  bool switchAlarmLiquid = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        iconTheme: const IconThemeData(color: Colors.white,size: 30, ),
+        title: Text(widget.title,style: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold),),
         backgroundColor: Colors.blueAccent,
       ),
       body: SingleChildScrollView(
@@ -30,70 +36,67 @@ class SettingsPageState extends State<SettingsPage> {
             CustomCardSettingsSwitch(
                 title: "Alarmes de Medicação",
                 description: "Ativa os alarmes de medicação",
-                switchValue: switchAlarm,
+                switchValue: switchAlarmMedication,
                 onSwitchChanged: (value) {
                 setState(() {
-                  switchAlarm = value;
+                  switchAlarmMedication = value;
                 });
               },
             ),
             CustomCardSettingsSwitch(
               title: "Alarmes de Micção",
               description: "Ativa os alarmes de micção",
-              switchValue: switchAlarm,
+              switchValue: switchAlarmMiccao,
               onSwitchChanged: (value) {
                 setState(() {
-                  switchAlarm = value;
+                  switchAlarmMiccao = value;
                 });
               },
             ),
             CustomCardSettingsSwitch(
               title: "Alarmes de Ingestão de Líquidos",
               description: "Ativa os alarmes de injestão de Liquidos",
-              switchValue: switchAlarm,
+              switchValue: switchAlarmLiquid,
               onSwitchChanged: (value) {
                 setState(() {
-                  switchAlarm = value;
+                  switchAlarmLiquid = value;
                 });
               },
             ),
+            divider(),
             CustomCardSettingsDropDown(
               title: "Intervalo dos alarmes de Ingestão de Líquidos",
               description: "Modifica o intervalo dos alarmes de injestão de Liquidos",
             ),
+            divider(),
             CustomCardSettingsDropDown(
               title: "Intervalo dos alarmes de micção",
               description: "Modifica o intervalo dos alarmes de micção",
             ),
             divider(),
-            CustomCardSettingsTelefoneEmergencia(
-              title: "Telefone de Emergência",
-              description: "Defina o telefone de Emergência",
-            ),
-            divider(),
-            SizedBox(
-              height: 95,
+            const SizedBox(
+              height: 210,
             ),
             Container(
               alignment: Alignment.bottomCenter,
               child: Container(
                 alignment: Alignment.bottomCenter,
                 height: 60,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(
                         topRight: Radius.circular(4.0),
                         topLeft: Radius.circular(4.0)),
                     color: Colors.white),
                 child: Padding(
-                    padding: EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.all(10.0),
                     child: SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        style: ButtonStyle(
+                        style: const ButtonStyle(
                           backgroundColor:
                           MaterialStatePropertyAll(Colors.orange),
                         ),
-                        child: Text(
+                        child: const Text(
                           "SALVAR ALTERAÇÕES",
                           style: TextStyle(color: Colors.white),
                         ),

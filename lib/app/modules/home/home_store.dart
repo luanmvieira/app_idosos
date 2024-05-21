@@ -24,24 +24,5 @@ abstract class _HomeStoreBase with Store {
   String idadeHomeController = '';
 
 
-  @action
-  Future<void> getCurrentUser() async {
-    getValidator = true;
-    currentUserModel = await _dbHome.getCurrentUser();
-    nameHomeController = currentUserModel.nome;
-    idadeHomeController = currentUserModel.idade;
 
-    getValidator = false;
-  }
-
-
-
-  @action
-  Future logOut() async {
-    logOutstate = await _dbHome.logout();
-    if(logOutstate == true){
-      Modular.to.navigate("/");
-    }else{
-    }
-  }
 }

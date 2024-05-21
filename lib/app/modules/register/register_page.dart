@@ -35,6 +35,7 @@ class RegisterPageState extends State<RegisterPage> {
           ),
       ):Scaffold(
         appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.white,size: 30),
           elevation: 0,
           backgroundColor: Colors.blueAccent,
         ),

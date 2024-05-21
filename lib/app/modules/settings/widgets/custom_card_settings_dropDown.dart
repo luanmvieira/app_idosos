@@ -48,18 +48,18 @@ class _CustomCardSettingsDropDownState extends State<CustomCardSettingsDropDown>
                 children: [
                   Text(
                     widget.title,
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 15.5,
                         fontWeight: FontWeight.normal,
                         color: Colors.black
 
                     ),
                   ),
-                  SizedBox(height: 3.0),
+                  const SizedBox(height: 3.0),
                   Text(
                     widget.description,
                     textAlign: TextAlign.start,
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 15.0,
                         color: Colors.black
 
@@ -73,7 +73,7 @@ class _CustomCardSettingsDropDownState extends State<CustomCardSettingsDropDown>
               child: DropdownButton<String>(
                 isExpanded: true,
                 value: selectedItem,
-                hint: Text("Selecione o tempo de intervalo"),
+                hint: const Text("Selecione o tempo de intervalo"),
                 items: itens.map<DropdownMenuItem<String>>((stringItem) {
                   return DropdownMenuItem<String>(
                     value: stringItem,

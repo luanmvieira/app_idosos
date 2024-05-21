@@ -50,11 +50,15 @@ class HomePageState extends State<HomePage> {
       )
           : Scaffold(
               appBar: AppBar(
+                iconTheme: IconThemeData(color: Colors.white,size: 30),
                 backgroundColor: Colors.blueAccent,
                 elevation: 0,
-                title: const Text(
-                  " ",
-                  style: TextStyle(fontSize: 13),
+                title: const Center(
+                  child: Text("O Bom Samaritano - Cuidando do Idoso",
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold), ),
                 ),
               ),
               body: Padding(
@@ -85,7 +89,7 @@ class HomePageState extends State<HomePage> {
                               ),
                             ),
                             const Text(
-                              'Medicação',
+                              'Medicamentos',
                               style: TextStyle(color: Colors.white, fontSize: 13.5),
                             ),
                           ],
@@ -179,6 +183,68 @@ class HomePageState extends State<HomePage> {
                             ),
                             Text(
                               'Ingestão de Liquidos',
+                              style: TextStyle(color: Colors.white, fontSize: 13.5),
+                            ),
+                          ],
+                        ),
+                      ),
+                      onTap: (){
+                        Modular.to.pushNamed("/hydration/");
+                      },
+                    ),
+                    GestureDetector(
+                      child: Container(
+                        width: 65,
+                        height: 15,
+                        decoration: BoxDecoration(
+                          color: Colors.lightBlue,
+                          borderRadius: BorderRadius.circular(
+                              10.0), // Adiciona bordas curvas
+                        ),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding:
+                              const EdgeInsets.only(top: 10.0, bottom: 10),
+                              child: Image.asset(
+                                "assets/images/amor-proprio.png",
+                                height: 120,
+                                width: 120,
+                              ),
+                            ),
+                            Text(
+                              'Orientação ao Autocuidado',
+                              style: TextStyle(color: Colors.white, fontSize: 13.5),
+                            ),
+                          ],
+                        ),
+                      ),
+                      onTap: (){
+                        Modular.to.pushNamed("/hydration/");
+                      },
+                    ),
+                    GestureDetector(
+                      child: Container(
+                        width: 65,
+                        height: 15,
+                        decoration: BoxDecoration(
+                          color: Colors.lightBlue,
+                          borderRadius: BorderRadius.circular(
+                              10.0), // Adiciona bordas curvas
+                        ),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding:
+                              const EdgeInsets.only(top: 10.0, bottom: 10),
+                              child: Image.asset(
+                                "assets/images/recomendacoes.png",
+                                height: 120,
+                                width: 120,
+                              ),
+                            ),
+                            Text(
+                              'Recomendações',
                               style: TextStyle(color: Colors.white, fontSize: 13.5),
                             ),
                           ],

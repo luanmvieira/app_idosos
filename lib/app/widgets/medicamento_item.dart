@@ -56,6 +56,7 @@ class MedicamentoItem extends StatelessWidget {
                             onPressed: () async {
                               bool deleted = await store.deleteNotifications(id);
                               if(deleted){
+                                Modular.to.pop();
                                 Fluttertoast.showToast(
                                     msg: "Medicação removida com sucesso!",
                                     toastLength: Toast.LENGTH_SHORT,
@@ -67,6 +68,7 @@ class MedicamentoItem extends StatelessWidget {
                                 );
                                 await store.getListMedicamentos();
                               }else{
+                                Modular.to.pop();
                                 Fluttertoast.showToast(
                                     msg: "Medicação não removida, tente novamente",
                                     toastLength: Toast.LENGTH_SHORT,
@@ -92,6 +94,7 @@ class MedicamentoItem extends StatelessWidget {
                             onPressed: () async {
                               await store.getListMedicamentos();
                               var medication = await medicacaoStore.findFirst(Medication_.id.equals(id));
+                              Modular.to.pop();
                               showDialog(
                                   context: context,
                                   builder: (BuildContext context) {

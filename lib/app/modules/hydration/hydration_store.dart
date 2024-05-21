@@ -100,7 +100,7 @@ abstract class _HydrationStoreBase with Store {
       'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
     ];
 
-    String diaDaSemana = diasDaSemana[DateTime(ano, mes, dia).weekday - 1];
+    String diaDaSemana = diasDaSemana[DateTime(ano, mes, dia).weekday];
     String diaFormatado = dia.toString().padLeft(2, '0');
     String mesFormatado = meses[mes - 1];
 
