@@ -1,16 +1,14 @@
-# app_idosos
+# App Idosos
 
-A new Flutter project.
+App criado como trabalho de conclusão do curso de Sistemas de Informação - Unimontes.
 
-## Getting Started
+## Tecnologias
 
-This project is a starting point for a Flutter application.
+O que foi utilizado para criar o app:
 
-A few resources to get you started if this is your first Flutter project:
+- Flutter
+- Dart
+- Modular
+- Mobx
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
